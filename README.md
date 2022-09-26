@@ -13,4 +13,3 @@ Tecnologias utilizadas:
 - JDBC
 - MySQL Workbench
 - CSS
-teste
