@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-// Olá
+
     private static Scene mainScene;
 
     @Override
