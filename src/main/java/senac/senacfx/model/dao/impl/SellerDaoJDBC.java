@@ -24,8 +24,8 @@ public class SellerDaoJDBC implements SellerDao {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement(
-                    "insert into seller " +
-                            "(Name, Email, BirthDate, BaseSalary, DepartmentId) " +
+                    "insert into cliente " +
+                            "(nome, data_nascimento, endereco, telefone, cpf) " +
                             "values (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
