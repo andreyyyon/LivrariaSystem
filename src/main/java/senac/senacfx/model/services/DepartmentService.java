@@ -2,9 +2,7 @@ package senac.senacfx.model.services;
 
 import senac.senacfx.model.dao.DaoFactory;
 import senac.senacfx.model.dao.DepartmentDao;
-import senac.senacfx.model.entities.Department;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentService {

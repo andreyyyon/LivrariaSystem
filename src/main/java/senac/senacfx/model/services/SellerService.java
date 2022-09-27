@@ -2,7 +2,6 @@ package senac.senacfx.model.services;
 
 import senac.senacfx.model.dao.DaoFactory;
 import senac.senacfx.model.dao.SellerDao;
-import senac.senacfx.model.entities.Seller;
 
 import java.util.List;
 
