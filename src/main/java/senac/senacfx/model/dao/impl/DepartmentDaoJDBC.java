@@ -3,7 +3,6 @@ package senac.senacfx.model.dao.impl;
 import senac.senacfx.db.DB;
 import senac.senacfx.db.DbException;
 import senac.senacfx.model.dao.DepartmentDao;
-import senac.senacfx.model.entities.Department;
 
 import java.sql.*;
 import java.util.ArrayList;

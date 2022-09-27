@@ -1,7 +1,5 @@
 package senac.senacfx.model.dao;
 
-import senac.senacfx.model.entities.Department;
-import senac.senacfx.model.entities.Seller;
 import java.util.List;
 
 public interface SellerDao {

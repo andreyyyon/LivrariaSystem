@@ -15,11 +15,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import senac.senacfx.application.Main;
 import senac.senacfx.db.DbException;
-import senac.senacfx.db.DbIntegrityException;
 import senac.senacfx.gui.listeners.DataChangeListener;
 import senac.senacfx.gui.util.Alerts;
 import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.entities.Department;
 import senac.senacfx.model.services.DepartmentService;
 
 import java.io.IOException;

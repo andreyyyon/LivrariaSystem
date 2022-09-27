@@ -18,7 +18,6 @@ import senac.senacfx.db.DbException;
 import senac.senacfx.gui.listeners.DataChangeListener;
 import senac.senacfx.gui.util.Alerts;
 import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.entities.Seller;
 import senac.senacfx.model.services.DepartmentService;
 import senac.senacfx.model.services.SellerService;
 
