@@ -100,10 +100,10 @@ public class LivrosFormController implements Initializable {
 
         obj.setId(Utils.tryParseToInt(txtId.getText()));
 
-        if (txtName.getText() == null || txtName.getText().trim().equals("")){
-            exception.addError("name", "campo nao pode ser vazio");
+        if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
+            exception.addError("nome", "campo nao pode ser vazio");
         }
-        obj.setName(txtName.getText());
+        obj.setName(txtNome.getText());
 
         if (exception.getErrors().size() > 0){
             throw exception;
@@ -125,7 +125,7 @@ public class LivrosFormController implements Initializable {
 
     private void initializeNodes() {
         Constraints.setTextFieldInteger(txtId);
-        Constraints.setTextFieldMaxLength(txtName, 30);
+        Constraints.setTextFieldMaxLength(txtNome, 30);
 
     }
 
@@ -135,14 +135,14 @@ public class LivrosFormController implements Initializable {
         }
 
         txtId.setText(String.valueOf(entity.getId()));
-        txtName.setText(entity.getName());
+        txtNome.setText(entity.getName());
     }
 
     private void setErrorMessages(Map<String, String> errors){
         Set<String> fields = errors.keySet();
 
-        if (fields.contains("name")){
-            labelErrorName.setText(errors.get("name"));
+        if (fields.contains("nome")){
+            labelErrorNome.setText(errors.get("nome"));
         }
     }
 
