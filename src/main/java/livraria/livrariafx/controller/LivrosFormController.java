@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/LivrosFormController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
@@ -15,6 +16,15 @@ import livraria.livrariafx.gui.util.Utils;
 import livraria.livrariafx.model.entities.Department;
 import livraria.livrariafx.model.exceptions.ValidationException;
 import livraria.livrariafx.model.services.DepartmentService;
+=======
+import senac.senacfx.db.DbException;
+import senac.senacfx.gui.listeners.DataChangeListener;
+import senac.senacfx.gui.util.Alerts;
+import senac.senacfx.gui.util.Constraints;
+import senac.senacfx.gui.util.Utils;
+import senac.senacfx.model.exceptions.ValidationException;
+import senac.senacfx.model.services.DepartmentService;
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/DepartmentFormController.java
 
 import java.net.URL;
 import java.util.*;
@@ -31,10 +41,10 @@ public class LivrosFormController implements Initializable {
     private TextField txtId;
 
     @FXML
-    private TextField txtName;
+    private TextField txtNome;
 
     @FXML
-    private Label labelErrorName;
+    private Label labelErrorNome;
 
     @FXML
     private Button btSave;

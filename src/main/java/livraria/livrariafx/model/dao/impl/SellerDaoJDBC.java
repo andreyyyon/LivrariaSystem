@@ -1,10 +1,16 @@
 package livraria.livrariafx.model.dao.impl;
 
+<<<<<<< HEAD:src/main/java/livraria/livrariafx/model/dao/impl/SellerDaoJDBC.java
 import livraria.livrariafx.db.DB;
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.model.dao.SellerDao;
 import livraria.livrariafx.model.entities.Department;
 import livraria.livrariafx.model.entities.Seller;
+=======
+import senac.senacfx.db.DB;
+import senac.senacfx.db.DbException;
+import senac.senacfx.model.dao.SellerDao;
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/model/dao/impl/SellerDaoJDBC.java
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/LivrosListController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
@@ -20,6 +21,14 @@ import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Utils;
 import livraria.livrariafx.model.entities.Department;
 import livraria.livrariafx.model.services.DepartmentService;
+=======
+import senac.senacfx.application.Main;
+import senac.senacfx.db.DbException;
+import senac.senacfx.gui.listeners.DataChangeListener;
+import senac.senacfx.gui.util.Alerts;
+import senac.senacfx.gui.util.Utils;
+import senac.senacfx.model.services.DepartmentService;
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/DepartmentListController.java
 
 import java.io.IOException;
 import java.net.URL;

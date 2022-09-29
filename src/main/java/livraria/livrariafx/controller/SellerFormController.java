@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/SellerFormController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
@@ -17,6 +18,16 @@ import livraria.livrariafx.model.entities.Seller;
 import livraria.livrariafx.model.exceptions.ValidationException;
 import livraria.livrariafx.model.services.DepartmentService;
 import livraria.livrariafx.model.services.SellerService;
+=======
+import senac.senacfx.db.DbException;
+import senac.senacfx.gui.listeners.DataChangeListener;
+import senac.senacfx.gui.util.Alerts;
+import senac.senacfx.gui.util.Constraints;
+import senac.senacfx.gui.util.Utils;
+import senac.senacfx.model.exceptions.ValidationException;
+import senac.senacfx.model.services.DepartmentService;
+import senac.senacfx.model.services.SellerService;
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/SellerFormController.java
 
 import java.net.URL;
 import java.time.Instant;

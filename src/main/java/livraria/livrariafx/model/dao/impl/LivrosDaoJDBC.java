@@ -1,15 +1,8 @@
-package livraria.livrariafx.model.dao.impl;
+package senac.senacfx.model.dao.impl;
 
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/model/dao/impl/DepartmentDaoJDBC.java
-import livraria.livrariafx.db.DB;
-import livraria.livrariafx.db.DbException;
-import livraria.livrariafx.model.dao.DepartmentDao;
-import livraria.livrariafx.model.entities.Department;
-=======
 import senac.senacfx.db.DB;
 import senac.senacfx.db.DbException;
 import senac.senacfx.model.dao.DepartmentDao;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/model/dao/impl/DepartmentDaoJDBC.java
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,8 +22,8 @@ public class DepartmentDaoJDBC implements DepartmentDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("insert into department " +
-                    "(Name) " +
-                    "values (?) ",
+                            "(Name) " +
+                            "values (?) ",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setString(1, obj.getName());
@@ -61,8 +54,8 @@ public class DepartmentDaoJDBC implements DepartmentDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("update department " +
-                            "set Name = ? " +
-                            "where Id = ?");
+                    "set Name = ? " +
+                    "where Id = ?");
 
             st.setString(1, obj.getName());
             st.setInt(2, obj.getId());

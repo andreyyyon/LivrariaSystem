@@ -1,8 +1,13 @@
 package livraria.livrariafx.model.services;
 
+<<<<<<< HEAD:src/main/java/livraria/livrariafx/model/services/DepartmentService.java
 import livraria.livrariafx.model.dao.DaoFactory;
 import livraria.livrariafx.model.dao.DepartmentDao;
 import livraria.livrariafx.model.entities.Department;
+=======
+import senac.senacfx.model.dao.DaoFactory;
+import senac.senacfx.model.dao.DepartmentDao;
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/model/services/DepartmentService.java
 
 import java.util.List;
 

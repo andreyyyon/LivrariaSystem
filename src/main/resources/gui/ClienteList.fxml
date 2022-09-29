@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD:src/main/resources/gui/ClienteList.fxml
 <VBox maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="800.0" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.SellerListController">
          <children>
             <Label text="Registros de clientes">
+=======
+<VBox maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="800.0" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="senac.senacfx.controller.SellerListController">
+         <children>
+            <Label prefHeight="56.0" prefWidth="227.0" text="Registro de Clientes">
+>>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/resources/gui/SellerList.fxml
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -22,19 +26,14 @@
                   <Insets bottom="10.0" left="20.0" top="10.0" />
                </padding>
             </Label>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
-        <items>
-          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" styleClass="button-new" text="Novo" />
-        </items>
-      </ToolBar>
-      <TableView fx:id="tableViewSeller" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+      <TableView fx:id="tableViewSeller" prefHeight="235.0" prefWidth="793.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="24.0" text="Id" />
           <TableColumn fx:id="tableColumnName" prefWidth="96.0" text="Nome" />
             <TableColumn fx:id="tableColumnEmail" prefWidth="105.0" text="E-mail" />
-            <TableColumn fx:id="tableColumnBirthDate" prefWidth="142.0" text="Data de Nascimento" />
-            <TableColumn fx:id="tableColumnBaseSalary" minWidth="8.0" prefWidth="61.0" text="Salário" />
-            <TableColumn fx:id="tableColumnEDIT" prefWidth="78.0" />
+            <TableColumn fx:id="tableColumnBirthDate" prefWidth="105.0" text="Idade" />
+            <TableColumn fx:id="tableColumnBaseSalary" minWidth="8.0" prefWidth="85.0" text="CPF" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="110.0" text="Endereço" />
             <TableColumn fx:id="tableColumnREMOVE" prefWidth="83.0" />
         </columns>
       </TableView>
