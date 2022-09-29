@@ -1,8 +1,9 @@
-package senac.senacfx.model.dao.impl;
+package livraria.livrariafx.model.dao.impl;
 
-import senac.senacfx.db.DB;
-import senac.senacfx.db.DbException;
-import senac.senacfx.model.dao.DepartmentDao;
+import livraria.livrariafx.db.DB;
+import livraria.livrariafx.db.DbException;
+import livraria.livrariafx.model.dao.LivrosDao;
+import senac.senacfx.model.entities.Livros;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,23 +11,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DepartmentDaoJDBC implements DepartmentDao {
+public class LivrosDaoJDBC implements LivrosDao {
     private Connection conn;
 
-    public DepartmentDaoJDBC(Connection conn) {
+    public LivrosDaoJDBC(Connection conn) {
         this.conn = conn;
     }
 
     @Override
-    public void insert(Department obj) {
+    public void insert(Livros obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("insert into department " +
-                            "(Name) " +
+            st = conn.prepareStatement("insert into livros " +
+                            "(nome) " +
                             "values (?) ",
                     Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1, obj.getName());
+            st.setString(1, obj.getNome());
 
             int rowsAffected = st.executeUpdate();
 
@@ -49,15 +50,15 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     }
 
     @Override
-    public void update(Department obj) {
+    public void update(senac.senacfx.model.entities.Livros obj) {
 
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("update department " +
+            st = conn.prepareStatement("update livros " +
                     "set Name = ? " +
                     "where Id = ?");
 
-            st.setString(1, obj.getName());
+            st.setString(1, obj.getNome());
             st.setInt(2, obj.getId());
 
             int rowsAffected = st.executeUpdate();
@@ -129,7 +130,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     }
 
     @Override
-    public List<Department> findAll() {
+    public List<Livros> findAll() {
 
         PreparedStatement st = null;
         ResultSet rs = null;
