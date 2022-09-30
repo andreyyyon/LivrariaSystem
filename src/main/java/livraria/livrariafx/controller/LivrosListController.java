@@ -20,7 +20,6 @@ import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Utils;
 import livraria.livrariafx.model.entities.Department;
-import livraria.livrariafx.model.services.DepartmentService;
 =======
 import senac.senacfx.application.Main;
 import senac.senacfx.db.DbException;

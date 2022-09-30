@@ -1,4 +1,4 @@
-package senac.senacfx.model.entities;
+package livraria.livrariafx.model.entities;
 
 import java.io.Serializable;
 

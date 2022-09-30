@@ -15,7 +15,6 @@ import livraria.livrariafx.gui.util.Constraints;
 import livraria.livrariafx.gui.util.Utils;
 import livraria.livrariafx.model.entities.Department;
 import livraria.livrariafx.model.exceptions.ValidationException;
-import livraria.livrariafx.model.services.DepartmentService;
 =======
 import senac.senacfx.db.DbException;
 import senac.senacfx.gui.listeners.DataChangeListener;

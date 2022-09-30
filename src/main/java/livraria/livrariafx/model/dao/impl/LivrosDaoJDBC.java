@@ -3,7 +3,7 @@ package livraria.livrariafx.model.dao.impl;
 import livraria.livrariafx.db.DB;
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.model.dao.LivrosDao;
-import senac.senacfx.model.entities.Livros;
+import livraria.livrariafx.model.entities.Livros;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,11 +50,11 @@ public class LivrosDaoJDBC implements LivrosDao {
     }
 
     @Override
-    public void update(senac.senacfx.model.entities.Livros obj) {
+    public void update(Livros obj) {
 
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("update livros " +
+            st = conn.prepareStatement("update Livros " +
                     "set Name = ? " +
                     "where Id = ?");
 
@@ -78,14 +78,14 @@ public class LivrosDaoJDBC implements LivrosDao {
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try{
-            st = conn.prepareStatement("delete from department where Id = ?");
+            st = conn.prepareStatement("delete from Livros where Id = ?");
 
             st.setInt(1, id);
 
             int rowsAffected = st.executeUpdate();
 
             if (rowsAffected == 0){
-                throw new DbException("Departamento inexistente!");
+                throw new DbException("Livros inexistente!");
             }
 
         } catch (SQLException e){
@@ -96,20 +96,20 @@ public class LivrosDaoJDBC implements LivrosDao {
     }
 
     @Override
-    public Department findById(Integer id) {
+    public Livros findById(Integer id) {
 
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select * from department " +
+                    "select * from Livros " +
                     "where Id = ?");
 
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()){
-                Department dep = instantiateDepartment(rs);
-                return dep;
+                Livros liv = instantiateLivros(rs);
+                return liv;
 
             }
             return null;
@@ -122,11 +122,11 @@ public class LivrosDaoJDBC implements LivrosDao {
 
     }
 
-    private Department instantiateDepartment(ResultSet rs) throws SQLException {
-        Department dep = new Department();
-        dep.setId(rs.getInt("Id"));
-        dep.setName(rs.getString("Name"));
-        return dep;
+    private Livros instantiateLivros(ResultSet rs) throws SQLException {
+        Livros liv = new Livros();
+        liv.setId(rs.getInt("Id"));
+        liv.setNome(rs.getString("Name"));
+        return liv;
     }
 
     @Override
@@ -141,15 +141,15 @@ public class LivrosDaoJDBC implements LivrosDao {
 
             rs = st.executeQuery();
 
-            List<Department> list = new ArrayList<>();
-            Map<Integer, Department> map = new HashMap<>();
+            List<Livros> list = new ArrayList<>();
+            Map<Integer, Livros> map = new HashMap<>();
 
             while (rs.next()){
 
-                Department dep = map.get(rs.getInt("Id"));
+                Livros dep = map.get(rs.getInt("Id"));
 
                 if (dep == null){
-                    dep = instantiateDepartment(rs);
+                    dep = instantiateLivros(rs);
                     map.put(rs.getInt("Id"), dep);
                 }
 

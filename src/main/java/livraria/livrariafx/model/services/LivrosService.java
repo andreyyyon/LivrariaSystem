@@ -2,16 +2,16 @@ package livraria.livrariafx.model.services;
 
 import livraria.livrariafx.model.dao.DaoFactory;
 import livraria.livrariafx.model.dao.LivrosDao;
-import livraria.livrariafx.model.entities.Department;
+import livraria.livrariafx.model.entities.Livros;
 
 import java.util.List;
 
 public class LivrosService {
 
     //dependencia injetada usando padrao factory
-    private LivrosDao dao = DaoFactory.createDepartmentDao();
+    private LivrosDao dao = DaoFactory.createLivrosDao();
 
-    public List<Department> findAll() {
+    public List<Livros> findAll() {
         return dao.findAll();
 
         //Dados MOCK (fake) so para testar, sem puxar do banco por hora
@@ -22,7 +22,7 @@ public class LivrosService {
 //        return list;
 
     }
-    public void saveOrUpdate(Department obj){
+    public void saveOrUpdate(Livros obj){
         if (obj.getId() == null){
             dao.insert(obj);
         } else {
@@ -30,7 +30,7 @@ public class LivrosService {
         }
     }
 
-    public void remove(Department obj){
+    public void remove(Livros obj){
         dao.deleteById(obj.getId());
     }
 }

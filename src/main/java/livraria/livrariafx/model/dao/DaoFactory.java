@@ -1,6 +1,7 @@
 package livraria.livrariafx.model.dao;
 
 import livraria.livrariafx.db.DB;
+import livraria.livrariafx.model.dao.impl.LivrosDaoJDBC;
 import livraria.livrariafx.model.dao.impl.SellerDaoJDBC;
 
 public class DaoFactory {
@@ -9,7 +10,7 @@ public class DaoFactory {
         return new SellerDaoJDBC(DB.getConnection());
     }
 
-    public static DepartmentDao createLivrosDao(){
+    public static LivrosDao createLivrosDao(){
         return new LivrosDaoJDBC(DB.getConnection());
     }
 

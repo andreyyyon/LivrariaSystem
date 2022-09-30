@@ -12,7 +12,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.util.Alerts;
-import livraria.livrariafx.model.services.DepartmentService;
 import livraria.livrariafx.model.services.SellerService;
 
 import java.io.IOException;
