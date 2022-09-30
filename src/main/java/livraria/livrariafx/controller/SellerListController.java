@@ -19,7 +19,6 @@ import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Utils;
-import livraria.livrariafx.model.entities.Seller;
 import livraria.livrariafx.model.services.SellerService;
 =======
 import senac.senacfx.application.Main;

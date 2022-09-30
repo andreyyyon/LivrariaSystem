@@ -1,16 +1,10 @@
 package livraria.livrariafx.model.dao.impl;
 
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/model/dao/impl/SellerDaoJDBC.java
 import livraria.livrariafx.db.DB;
 import livraria.livrariafx.db.DbException;
-import livraria.livrariafx.model.dao.SellerDao;
-import livraria.livrariafx.model.entities.Department;
-import livraria.livrariafx.model.entities.Seller;
-=======
-import senac.senacfx.db.DB;
-import senac.senacfx.db.DbException;
-import senac.senacfx.model.dao.SellerDao;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/model/dao/impl/SellerDaoJDBC.java
+import livraria.livrariafx.model.dao.ClienteDao;
+import livraria.livrariafx.model.entities.Livros;
+import senac.senacfx.model.entities.Cliente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,15 +12,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SellerDaoJDBC implements SellerDao {
+public class ClienteDaoJDBC implements ClienteDao {
     private Connection conn;
 
-    public SellerDaoJDBC(Connection conn) {
+    public ClienteDaoJDBC(Connection conn) {
         this.conn = conn;
     }
 
     @Override
-    public void insert(Seller obj) {
+    public void insert(Cliente obj) {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement(
@@ -62,15 +56,15 @@ public class SellerDaoJDBC implements SellerDao {
     }
 
     @Override
-    public void update(Seller obj) {
+    public void update(Cliente obj) {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement(
                     "update seller " +
-                            "set Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " +
+                            "set nome = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " +
                             "where id = ?");
 
-            st.setString(1, obj.getName());
+            st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
             st.setDate(3, new Date(obj.getBirthDate().getTime()));
             st.setDouble(4, obj.getBaseSalary());
@@ -108,7 +102,7 @@ public class SellerDaoJDBC implements SellerDao {
     }
 
     @Override
-    public Seller findById(Integer id) {
+    public Cliente findById(Integer id) {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
@@ -121,8 +115,8 @@ public class SellerDaoJDBC implements SellerDao {
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()){
-                Department dep = instantiateDepartment(rs);
-                Seller obj = instantiateSeller(rs, dep);
+                Department dep = instantiateLivros(rs);
+                Cliente obj = instantiateCliente(rs, dep);
                 return obj;
 
             }
@@ -135,49 +129,49 @@ public class SellerDaoJDBC implements SellerDao {
         }
     }
 
-    private Department instantiateDepartment(ResultSet rs) throws SQLException {
-        Department dep = new Department();
+    private Livros instantiateLivros(ResultSet rs) throws SQLException {
+        Livros dep = new Livros();
         dep.setId(rs.getInt("DepartmentId"));
         dep.setName(rs.getString("DepName"));
         return dep;
     }
 
-    private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException{
-        Seller obj = new Seller();
+    private Cliente instantiateSeller(ResultSet rs, Livros dep) throws SQLException{
+        Cliente obj = new Cliente();
         obj.setId(rs.getInt("Id"));
         obj.setName(rs.getString("Name"));
         obj.setEmail(rs.getString("Email"));
         obj.setBaseSalary(rs.getDouble("BaseSalary"));
         obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
-        obj.setDepartment(dep);
+        obj.setLivros(dep);
         return obj;
     }
     @Override
-    public List<Seller> findAll() {
+    public List<Cliente> findAll() {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select seller.*, department.Name as DepName " +
+                    "select cliente.*, department.Name as DepName " +
                     "from seller inner join department " +
                     "on seller.DepartmentId = department.Id " +
                     "order by Name");
 
             rs = st.executeQuery();
 
-            List<Seller> list = new ArrayList<>();
-            Map<Integer, Department> map = new HashMap<>();
+            List<Cliente> list = new ArrayList<>();
+            Map<Integer, Livros> map = new HashMap<>();
 
             while (rs.next()){
 
                 Department dep = map.get(rs.getInt("DepartmentId"));
 
                 if (dep == null){
-                    dep = instantiateDepartment(rs);
+                    dep = instantiateLivros(rs);
                     map.put(rs.getInt("DepartmentId"), dep);
                 }
 
-                Seller obj = instantiateSeller(rs, dep);
+                Cliente obj = instantiateCliente(rs, dep);
                 list.add(obj);
             }
             return list;
@@ -190,7 +184,22 @@ public class SellerDaoJDBC implements SellerDao {
     }
 
     @Override
-    public List<Seller> findByDepartment(Department department) {
+    public List<Cliente> findByLivros(Livros livros) {
+        return null;
+    }
+
+    @Override
+    public List<Cliente> findByDepartment(Livros livros) {
+        return null;
+    }
+
+    @Override
+    public List<Cliente> findByDepartment(Livros livros) {
+        return null;
+    }
+
+    @Override
+    public List<Cliente> findByLivros(Livros livros) {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
@@ -205,19 +214,19 @@ public class SellerDaoJDBC implements SellerDao {
 
             rs = st.executeQuery();
 
-            List<Seller> list = new ArrayList<>();
-            Map<Integer, Department> map = new HashMap<>();
+            List<Cliente> list = new ArrayList<>();
+            Map<Integer, Livros> map = new HashMap<>();
 
             while (rs.next()){
 
-                Department dep = map.get(rs.getInt("DepartmentId"));
+                Livros dep = map.get(rs.getInt("DepartmentId"));
 
                 if (dep == null){
-                    dep = instantiateDepartment(rs);
+                    dep = instantiateLivros(rs);
                     map.put(rs.getInt("DepartmentId"), dep);
                 }
 
-                Seller obj = instantiateSeller(rs, dep);
+                Cliente obj = instantiateCliente(rs, dep);
                 list.add(obj);
             }
             return list;
