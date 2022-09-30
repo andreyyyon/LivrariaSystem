@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="229.0" prefWidth="578.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosFormController">
+<AnchorPane prefHeight="130.0" prefWidth="387.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosFormController">
    <children>
       <GridPane layoutX="83.0" layoutY="68.0" prefHeight="114.0" prefWidth="366.0">
         <columnConstraints>
