@@ -7,32 +7,24 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/LivrosFormController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Constraints;
 import livraria.livrariafx.gui.util.Utils;
 import livraria.livrariafx.model.entities.Department;
+import livraria.livrariafx.model.entities.Livros;
 import livraria.livrariafx.model.exceptions.ValidationException;
-=======
-import senac.senacfx.db.DbException;
-import senac.senacfx.gui.listeners.DataChangeListener;
-import senac.senacfx.gui.util.Alerts;
-import senac.senacfx.gui.util.Constraints;
-import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.exceptions.ValidationException;
-import senac.senacfx.model.services.DepartmentService;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/DepartmentFormController.java
+import livraria.livrariafx.model.services.LivrosService;
 
 import java.net.URL;
 import java.util.*;
 
 public class LivrosFormController implements Initializable {
 
-    private Department entity;
+    private Livros entity;
 
-    private DepartmentService service;
+    private LivrosService service;
 
     private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
@@ -51,12 +43,12 @@ public class LivrosFormController implements Initializable {
     @FXML
     private Button btCancel;
 
-    //Contolador agora tem uma instancia do departamento
-    public void setDepartment(Department entity){
+    //Contolador agora tem uma instancia do Livros
+    public void setLivros(Livros entity){
         this.entity = entity;
     }
 
-    public void setDepartmentService(DepartmentService service){
+    public void setLivrosService(LivrosService service){
         this.service = service;
     }
 
@@ -92,8 +84,8 @@ public class LivrosFormController implements Initializable {
         }
     }
 
-    private Department getFormData() {
-        Department obj = new Department();
+    private Livros getFormData() {
+        Livros obj = new Livros();
 
         ValidationException exception = new ValidationException("Erro na validacao");
 
@@ -102,7 +94,7 @@ public class LivrosFormController implements Initializable {
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("nome", "campo nao pode ser vazio");
         }
-        obj.setName(txtNome.getText());
+        obj.setNome(txtNome.getText());
 
         if (exception.getErrors().size() > 0){
             throw exception;
@@ -134,7 +126,7 @@ public class LivrosFormController implements Initializable {
         }
 
         txtId.setText(String.valueOf(entity.getId()));
-        txtNome.setText(entity.getName());
+        txtNome.setText(entity.getNome());
     }
 
     private void setErrorMessages(Map<String, String> errors){

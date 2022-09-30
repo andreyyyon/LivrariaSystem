@@ -13,21 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/LivrosListController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Utils;
-import livraria.livrariafx.model.entities.Department;
-=======
-import senac.senacfx.application.Main;
-import senac.senacfx.db.DbException;
-import senac.senacfx.gui.listeners.DataChangeListener;
-import senac.senacfx.gui.util.Alerts;
-import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.services.DepartmentService;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/DepartmentListController.java
+import livraria.livrariafx.model.entities.Livros;
+import livraria.livrariafx.model.services.LivrosService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,38 +30,38 @@ import java.util.ResourceBundle;
 public class LivrosListController implements Initializable, DataChangeListener {
     //ao inves de implementar um service = new DepartmentService(), ficaria acoplamento forte
     //e seria obrigado a instanciar a classe
-    private DepartmentService service;
+    private LivrosService service;
 
     @FXML
-    private TableView<Department> tableViewDepartment;
+    private TableView<Livros> tableViewLivros;
 
     @FXML
-    private TableColumn<Department, Integer> tableColumnId;
+    private TableColumn<Livros, Integer> tableColumnId;
 
     @FXML
-    private TableColumn<Department, String> tableColumnName;
+    private TableColumn<Livros, String> tableColumnName;
 
     @FXML
-    private TableColumn<Department, Department> tableColumnEDIT;
+    private TableColumn<Livros, Livros> tableColumnEDIT;
 
     @FXML
-    private TableColumn<Department, Department> tableColumnREMOVE;
+    private TableColumn<Livros, Livros> tableColumnREMOVE;
 
     @FXML
     private Button btNew;
 
-    private ObservableList<Department> obsList;
+    private ObservableList<Livros> obsList;
 
     @FXML
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
-        Department obj = new Department();
+        Livros obj = new Livros();
         createDialogForm(obj, "/gui/LivrosForm.fxml", parentStage);
     }
 
     //feito isso usando um set, para injetar dependencia, boa pratica
     //injecao de dependendencia manual, sem framework pra isso
-    public void setDepartmentService(DepartmentService service){
+    public void setLivrosService(LivrosService service){
         this.service = service;
     }
 
@@ -84,7 +76,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         Stage stage = (Stage) Main.getMainScene().getWindow();
-        tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
+        tableViewLivros.prefHeightProperty().bind(stage.heightProperty());
 
     }
 
@@ -92,26 +84,26 @@ public class LivrosListController implements Initializable, DataChangeListener {
         if (service == null){
             throw new IllegalStateException("Service is null!");
         }
-        List<Department> list = service.findAll();
+        List<Livros> list = service.findAll();
         obsList = FXCollections.observableArrayList(list);
-        tableViewDepartment.setItems(obsList);
+        tableViewLivros.setItems(obsList);
         initEditButtons();
         initRemoveButtons();
     }
 
-    private void createDialogForm(Department obj, String absoluteName, Stage parentStage){
+    private void createDialogForm(Livros obj, String absoluteName, Stage parentStage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             Pane pane = loader.load();
 
             LivrosFormController controller = loader.getController();
-            controller.setDepartment(obj);
-            controller.setDepartmentService(new DepartmentService());
+            controller.setLivros(obj);
+            controller.setLivrosService(new LivrosService());
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Enter department data");
+            dialogStage.setTitle("Enter Livros data");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parentStage);
@@ -131,10 +123,10 @@ public class LivrosListController implements Initializable, DataChangeListener {
 
     private void initEditButtons() {
         tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        tableColumnEDIT.setCellFactory(param -> new TableCell<Department, Department>() {
+        tableColumnEDIT.setCellFactory(param -> new TableCell<Livros, Livros>() {
             private final Button button = new Button("Editar");
             @Override
-            protected void updateItem(Department obj, boolean empty) {
+            protected void updateItem(Livros obj, boolean empty) {
                 super.updateItem(obj, empty);
                 if (obj == null) {
                     setGraphic(null);
@@ -150,11 +142,11 @@ public class LivrosListController implements Initializable, DataChangeListener {
 
     private void initRemoveButtons() {
         tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        tableColumnREMOVE.setCellFactory(param -> new TableCell<Department, Department>() {
+        tableColumnREMOVE.setCellFactory(param -> new TableCell<Livros, Livros>() {
             private final Button button = new Button("Remover");
 
             @Override
-            protected void updateItem(Department obj, boolean empty) {
+            protected void updateItem(Livros obj, boolean empty) {
                 super.updateItem(obj, empty);
                 if (obj == null) {
                     setGraphic(null);
@@ -166,7 +158,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
         });
     }
 
-    private void removeEntity(Department obj) {
+    private void removeEntity(Livros obj) {
         Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Confirma que quer deletar?");
 
         if (result.get() == ButtonType.OK){
