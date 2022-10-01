@@ -7,39 +7,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Callback;
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/SellerFormController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Constraints;
 import livraria.livrariafx.gui.util.Utils;
-import livraria.livrariafx.model.entities.Department;
+import livraria.livrariafx.model.entities.Cliente;
+import livraria.livrariafx.model.entities.Livros;
 import livraria.livrariafx.model.exceptions.ValidationException;
-import livraria.livrariafx.model.services.SellerService;
-=======
-import senac.senacfx.db.DbException;
-import senac.senacfx.gui.listeners.DataChangeListener;
-import senac.senacfx.gui.util.Alerts;
-import senac.senacfx.gui.util.Constraints;
-import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.exceptions.ValidationException;
-import senac.senacfx.model.services.DepartmentService;
-import senac.senacfx.model.services.SellerService;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/SellerFormController.java
-
+import livraria.livrariafx.model.services.ClienteService;
+import livraria.livrariafx.model.services.LivrosService;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
-public class SellerFormController implements Initializable {
+public class ClienteFormController implements Initializable {
 
-    private Seller entity;
+    private Cliente entity;
 
-    private SellerService service;
+    private ClienteService service;
 
-    private DepartmentService departmentService;
+    private LivrosService LivrosService;
 
     private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
@@ -47,30 +34,33 @@ public class SellerFormController implements Initializable {
     private TextField txtId;
 
     @FXML
-    private TextField txtName;
+    private TextField txtNome;
 
     @FXML
     private TextField txtEmail;
 
     @FXML
-    private DatePicker dpBirthDate;
+    private TextField txtIdade;
 
     @FXML
-    private TextField txtBaseSalary;
+    private TextField txtCpf;
+
+    private TextField txtEndereco;
 
     @FXML
-    private ComboBox<Department> comboBoxDepartment;
+    private ComboBox<Livros> comboBoxLivros;
     @FXML
-    private Label labelErrorName;
-
+    private Label labelErrorNome;
     @FXML
     private Label labelErrorEmail;
 
     @FXML
-    private Label labelErrorBirthDate;
+    private Label labelErrorIdade;
 
     @FXML
-    private Label labelErrorBaseSalary;
+    private Label labelErrorCpf;
+
+    private Label labelErrorEndereco;
 
     @FXML
     private Button btSave;
@@ -78,16 +68,16 @@ public class SellerFormController implements Initializable {
     @FXML
     private Button btCancel;
 
-    private ObservableList<Department> obsList;
+    private ObservableList<Livros> obsList;
 
     //Contolador agora tem uma instancia do departamento
-    public void setSeller(Seller entity){
+    public void setCliente(Cliente entity){
         this.entity = entity;
     }
 
-    public void setServices(SellerService service, DepartmentService departmentService){
+    public void setServices(ClienteService service, LivrosService livrosService){
         this.service = service;
-        this.departmentService = departmentService;
+        this.LivrosService = livrosService;
     }
 
     public void subscribeDataChangeListener(DataChangeListener listener) {
@@ -122,36 +112,35 @@ public class SellerFormController implements Initializable {
         }
     }
 
-    private Seller getFormData() {
-        Seller obj = new Seller();
+    private Cliente getFormData() {
+        Cliente obj = new Cliente();
 
         ValidationException exception = new ValidationException("Erro na validacao");
 
         obj.setId(Utils.tryParseToInt(txtId.getText()));
 
-        if (txtName.getText() == null || txtName.getText().trim().equals("")){
+        if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("name", "campo nao pode ser vazio");
         }
-        obj.setName(txtName.getText());
+        obj.setName(txtNome.getText());
 
         if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")){
             exception.addError("email", "campo nao pode ser vazio");
         }
         obj.setEmail(txtEmail.getText());
 
-        if (dpBirthDate.getValue() == null){
-            exception.addError("birthDate", "data nao selecionada");
-        } else {
-            Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
-            obj.setBirthDate(Date.from(instant));
+        if (txtIdade.getText() == null){
+            exception.addError("idade", "idade nao selecionada");
         }
+        obj.setIdade(Integer.valueOf(txtIdade.getText()));
 
-        if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")){
-            exception.addError("baseSalary", "campo nao pode ser vazio");
+        if (txtCpf.getText() == null){
+            exception.addError("cpf", "campo nao pode ser vazio");
         }
-        obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
-
-        obj.setDepartment(comboBoxDepartment.getValue());
+        obj.setCpf(Integer.valueOf(Integer.valueOf(txtCpf.getText())));
+        if (txtEndereco.getText() == null){
+            exception.addError("endereco", "campo nao pode ser vazio");
+        }
 
         if (exception.getErrors().size() > 0){
             throw exception;
@@ -173,12 +162,14 @@ public class SellerFormController implements Initializable {
 
     private void initializeNodes() {
         Constraints.setTextFieldInteger(txtId);
-        Constraints.setTextFieldMaxLength(txtName, 70);
-        Constraints.setTextFieldDouble(txtBaseSalary);
+        Constraints.setTextFieldMaxLength(txtNome, 70);
         Constraints.setTextFieldMaxLength(txtEmail, 60);
-        Utils.formatDatePicker(dpBirthDate, "dd/MM/yyyy");
+        Constraints.setTextFieldMaxLength(txtIdade, 3);
+        Constraints.setTextFieldMaxLength(txtCpf, 20);
+        Constraints.setTextFieldMaxLength(txtEndereco, 70);
 
-        initializeComboBoxDepartment();
+
+        initializeComboBoxLivros();
 
     }
 
@@ -189,57 +180,51 @@ public class SellerFormController implements Initializable {
         }
 
         txtId.setText(String.valueOf(entity.getId()));
-        txtName.setText(entity.getName());
+        txtNome.setText(entity.getName());
         txtEmail.setText(entity.getEmail());
+        txtIdade.setText(entity.getIdade());
+        txtCpf.setText(entity.getCpf());
+        txtEndereco.setText(entity.getEndereco());
+
 
         Locale.setDefault(Locale.US);
-
-        if (entity.getBirthDate() != null) {
-            dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
-        }
-
-        txtBaseSalary.setText(String.format("%.2f", entity.getBaseSalary()));
-
-        if (entity.getDepartment() == null) {
-            comboBoxDepartment.getSelectionModel().selectFirst();
-        } else {
-            comboBoxDepartment.setValue(entity.getDepartment());
-        }
 
     }
 
     public void loadAssociatedObjects(){
 
-        if (departmentService == null){
+        if (LivrosService == null){
             throw new IllegalStateException("DepartmentService was null");
         }
 
-        List<Department> list = departmentService.findAll();
+        List<Livros> list = LivrosService.findAll();
         obsList = FXCollections.observableArrayList(list);
-        comboBoxDepartment.setItems(obsList);
+        comboBoxLivros.setItems(obsList);
     }
 
     private void setErrorMessages(Map<String, String> errors){
         Set<String> fields = errors.keySet();
 
-        labelErrorName.setText((fields.contains("name") ? errors.get("name") : ""));
+        labelErrorNome.setText((fields.contains("name") ? errors.get("name") : ""));
         labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
-        labelErrorBirthDate.setText((fields.contains("birthDate") ? errors.get("birthDate") : ""));
-        labelErrorBaseSalary.setText((fields.contains("baseSalary") ? errors.get("baseSalary") : ""));
-        labelErrorName.getStyleClass().add("button");
+        labelErrorIdade.setText((fields.contains("idade") ? errors.get("idade") : ""));
+        labelErrorCpf.setText((fields.contains("cpf") ? errors.get("cpf") : ""));
+        labelErrorEndereco.setText((fields.contains("endereco") ? errors.get("endereco") : ""));
+        labelErrorNome.getStyleClass().add("button");
 
     }
 
-    private void initializeComboBoxDepartment() {
-        Callback<ListView<Department>, ListCell<Department>> factory = lv -> new ListCell<Department>() {
+    private void initializeComboBoxLivros() {
+        Callback<ListView<Livros>, ListCell<Livros>> factory = lv -> new ListCell<Livros>() {
             @Override
-            protected void updateItem(Department item, boolean empty) {
+            protected void updateItem(Livros item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty ? "" : item.getName());
+                setText(empty ? "" : item.getNome());
             }
         };
-        comboBoxDepartment.setCellFactory(factory);
-        comboBoxDepartment.setButtonCell(factory.call(null));
+        ComboBox<Livros> comboBoxLivros = null;
+        comboBoxLivros.setCellFactory(factory);
+        comboBoxLivros.setButtonCell(factory.call(null));
     }
 
 }

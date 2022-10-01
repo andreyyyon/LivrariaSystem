@@ -13,74 +13,61 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD:src/main/java/livraria/livrariafx/controller/SellerListController.java
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.listeners.DataChangeListener;
 import livraria.livrariafx.gui.util.Alerts;
 import livraria.livrariafx.gui.util.Utils;
-import livraria.livrariafx.model.services.SellerService;
-=======
-import senac.senacfx.application.Main;
-import senac.senacfx.db.DbException;
-import senac.senacfx.gui.listeners.DataChangeListener;
-import senac.senacfx.gui.util.Alerts;
-import senac.senacfx.gui.util.Utils;
-import senac.senacfx.model.services.DepartmentService;
-import senac.senacfx.model.services.SellerService;
->>>>>>> f6ec33715531d84e34d823125c3f6194ab8eddb6:src/main/java/senac/senacfx/controller/SellerListController.java
+import livraria.livrariafx.model.entities.Cliente;
+import livraria.livrariafx.model.services.ClienteService;
+import livraria.livrariafx.model.services.LivrosService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SellerListController implements Initializable, DataChangeListener {
+public class ClienteListController implements Initializable, DataChangeListener {
     //ao inves de implementar um service = new SellerService(), ficaria acoplamento forte
     //e seria obrigado a instanciar a classe
-    private SellerService service;
+    private ClienteService service;
 
     @FXML
-    private TableView<Seller> tableViewSeller;
+    private TableView<Cliente> tableViewcliente;
 
     @FXML
-    private TableColumn<Seller, Integer> tableColumnId;
-
+    private TableColumn<Cliente, Integer> tableColumnId;
     @FXML
-    private TableColumn<Seller, String> tableColumnName;
-
+    private TableColumn<Cliente, String> tableColumnNome;
     @FXML
-    private TableColumn<Seller, String> tableColumnEmail;
+    private TableColumn<Cliente, String> tableColumnEmail;
 
-    @FXML
-    private TableColumn<Seller, Date> tableColumnBirthDate;
+    private TableColumn<Cliente, Integer>tableColumnIdade;
 
-    @FXML
-    private TableColumn<Seller, Double> tableColumnBaseSalary;
+    private TableColumn<Cliente, Integer>tableColumnCPF;
 
+    private TableColumn<Cliente, Integer>tableColumnEndereco;
     @FXML
-    private TableColumn<Seller, Seller> tableColumnEDIT;
-
+    private TableColumn<Cliente, Cliente> tableColumnEDIT;
     @FXML
-    private TableColumn<Seller, Seller> tableColumnREMOVE;
+    private TableColumn<Cliente, Cliente> tableColumnREMOVE;
 
     @FXML
     private Button btNew;
 
-    private ObservableList<Seller> obsList;
+    private ObservableList<Cliente> obsList;
 
     @FXML
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
-        Seller obj = new Seller();
+        Cliente obj = new Cliente();
         createDialogForm(obj, "/gui/ClienteForm.fxml", parentStage);
     }
 
     //feito isso usando um set, para injetar dependencia, boa pratica
     //injecao de dependendencia manual, sem framework pra isso
-    public void setSellerService(SellerService service){
+    public void setClienteService(ClienteService service){
         this.service = service;
     }
 
@@ -92,16 +79,16 @@ public class SellerListController implements Initializable, DataChangeListener {
 
     private void initializeNodes() {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-        Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");
-        tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
-        Utils.formatTableColumnDouble(tableColumnBaseSalary, 2);
+        tableColumnIdade.setCellValueFactory(new PropertyValueFactory<>("idade"));
+        tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+
 
 
         Stage stage = (Stage) Main.getMainScene().getWindow();
-        tableViewSeller.prefHeightProperty().bind(stage.heightProperty());
+        tableViewcliente.prefHeightProperty().bind(stage.heightProperty());
 
     }
 
@@ -109,21 +96,21 @@ public class SellerListController implements Initializable, DataChangeListener {
         if (service == null){
             throw new IllegalStateException("Service is null!");
         }
-        List<Seller> list = service.findAll();
-        obsList = FXCollections.observableArrayList(list);
-        tableViewSeller.setItems(obsList);
+        List<Cliente> list = service.findAll();
+        obsList = (ObservableList<Cliente>) FXCollections.observableArrayList(list);
+        tableViewcliente.setItems(obsList);
         initEditButtons();
         initRemoveButtons();
     }
 
-    private void createDialogForm(Seller obj, String absoluteName, Stage parentStage){
+    private void createDialogForm(Cliente obj, String absoluteName, Stage parentStage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             Pane pane = loader.load();
 
-            SellerFormController controller = loader.getController();
-            controller.setSeller(obj);
-            controller.setServices(new SellerService(), new DepartmentService());
+            ClienteFormController controller = loader.getController();
+            controller.setCliente(obj);
+            controller.setServices(new ClienteService(), new LivrosService());
             controller.loadAssociatedObjects();
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
@@ -149,10 +136,10 @@ public class SellerListController implements Initializable, DataChangeListener {
 
     private void initEditButtons() {
         tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        tableColumnEDIT.setCellFactory(param -> new TableCell<Seller, Seller>() {
+        tableColumnEDIT.setCellFactory(param -> new TableCell<Cliente, Cliente>() {
             private final Button button = new Button("Editar");
             @Override
-            protected void updateItem(Seller obj, boolean empty) {
+            protected void updateItem(Cliente obj, boolean empty) {
                 super.updateItem(obj, empty);
                 if (obj == null) {
                     setGraphic(null);
@@ -168,11 +155,11 @@ public class SellerListController implements Initializable, DataChangeListener {
 
     private void initRemoveButtons() {
         tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        tableColumnREMOVE.setCellFactory(param -> new TableCell<Seller, Seller>() {
+        tableColumnREMOVE.setCellFactory(param -> new TableCell<Cliente, Cliente>() {
             private final Button button = new Button("Remover");
 
             @Override
-            protected void updateItem(Seller obj, boolean empty) {
+            protected void updateItem(Cliente obj, boolean empty) {
                 super.updateItem(obj, empty);
                 if (obj == null) {
                     setGraphic(null);
@@ -184,7 +171,7 @@ public class SellerListController implements Initializable, DataChangeListener {
         });
     }
 
-    private void removeEntity(Seller obj) {
+    private void removeEntity(Cliente obj) {
         Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Confirma que quer deletar?");
 
         if (result.get() == ButtonType.OK){

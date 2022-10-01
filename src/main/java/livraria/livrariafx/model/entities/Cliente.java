@@ -1,7 +1,6 @@
 package livraria.livrariafx.model.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -9,13 +8,13 @@ public class Cliente implements Serializable {
     private String nome;
     private String email;
     private Integer idade;
-    private String cpf;
+    private Integer cpf;
     private String endereco;
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String email, Integer idade, String cpf , String endereço) {
+        public Cliente(Integer id, String nome, String email, Integer idade, Integer cpf , String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -36,7 +35,7 @@ public class Cliente implements Serializable {
         return nome;
     }
 
-    public void setName(String name) {
+    public void setName(String nome) {
         this.nome = nome;
     }
 
@@ -48,8 +47,8 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public Integer getIdade() {
-        return idade;
+    public String getIdade() {
+        return String.valueOf(idade);
     }
 
     public void setIdade(Integer idade) {
@@ -57,10 +56,10 @@ public class Cliente implements Serializable {
     }
 
     public String getCpf() {
-        return cpf;
+        return String.valueOf(cpf);
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Integer cpf) {
         this.cpf = cpf;
     }
 

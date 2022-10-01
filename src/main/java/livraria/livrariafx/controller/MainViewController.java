@@ -12,7 +12,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import livraria.livrariafx.application.Main;
 import livraria.livrariafx.gui.util.Alerts;
-import livraria.livrariafx.model.services.SellerService;
+import livraria.livrariafx.model.entities.Cliente;
+import livraria.livrariafx.model.services.ClienteService;
+import livraria.livrariafx.model.services.LivrosService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,24 +24,24 @@ import java.util.function.Consumer;
 public class MainViewController implements Initializable {
 
     @FXML
-    private MenuItem menuItemSeller;
+    private MenuItem menuItemCliente;
     @FXML
-    private MenuItem menuItemDepartment;
+    private MenuItem menuItemLivros;
     @FXML
     private MenuItem menuItemAbout;
 
     @FXML
-    public void onMenuItemSellerAction(){
-        loadView("/gui/ClienteList.fxml", (SellerListController controller) -> {
-            controller.setSellerService(new SellerService());
+    public void onMenuItemClienteAction(){
+        loadView("/gui/ClienteList.fxml", (ClienteListController controller) -> {
+            controller.setClienteService(new ClienteService());
             controller.updateTableView();
         });
     }
 
     @FXML
-    public void onMenuItemDepartmentAction(){
+    public void onMenuItemLivrosAction(){
         loadView("/gui/LivrosList.fxml", (LivrosListController controller) -> {
-            controller.setDepartmentService(new DepartmentService());
+            controller.setLivrosService((new LivrosService()));
             controller.updateTableView();
         });
     }

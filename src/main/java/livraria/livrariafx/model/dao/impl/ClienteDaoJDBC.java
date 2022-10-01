@@ -4,8 +4,6 @@ import livraria.livrariafx.db.DB;
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.model.dao.ClienteDao;
 import livraria.livrariafx.model.entities.Livros;
-import senac.senacfx.model.entities.Cliente;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,11 +23,11 @@ public class ClienteDaoJDBC implements ClienteDao {
         try{
             st = conn.prepareStatement(
                     "insert into cliente " +
-                            "(nome, data_nascimento, endereco, telefone, cpf) " +
+                            "(nome, email, idade, cpf, endereco) " +
                             "values (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1, obj.getName());
+            st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
             st.setDate(3, new Date(obj.getBirthDate().getTime()));
             st.setDouble(4, obj.getBaseSalary());
