@@ -47,7 +47,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public int getIdade() {
+    public Integer getIdade() {
         return Integer.valueOf(idade);
     }
 
@@ -63,7 +63,7 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public int getEndereco() {
+    public String getEndereco() {
         return endereco;
     }
 

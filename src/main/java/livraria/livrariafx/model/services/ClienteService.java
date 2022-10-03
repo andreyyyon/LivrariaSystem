@@ -3,7 +3,6 @@ package livraria.livrariafx.model.services;
 import livraria.livrariafx.model.dao.DaoFactory;
 import livraria.livrariafx.model.dao.ClienteDao;
 import livraria.livrariafx.model.entities.Cliente;
-import  senac.senacfx.model.entities.Cliente;
 
 import java.util.List;
 

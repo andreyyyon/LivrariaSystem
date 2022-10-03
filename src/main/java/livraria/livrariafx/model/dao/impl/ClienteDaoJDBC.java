@@ -32,7 +32,7 @@ public class ClienteDaoJDBC implements ClienteDao {
             st.setString(2, obj.getEmail());
             st.setInt(3, obj.getIdade());
             st.setString(4, obj.getCpf());
-            st.setInt(5, obj.getEndereco());
+            st.setString(5, obj.getEndereco());
 
             int rowsAffected = st.executeUpdate();
 

@@ -182,7 +182,7 @@ public class ClienteFormController implements Initializable {
         txtId.setText(String.valueOf(entity.getId()));
         txtNome.setText(entity.getNome());
         txtEmail.setText(entity.getEmail());
-        txtIdade.setText(entity.getIdade());
+        txtIdade.setText(String.valueOf(entity.getIdade()));
         txtCpf.setText(entity.getCpf());
         txtEndereco.setText(entity.getEndereco());
 
