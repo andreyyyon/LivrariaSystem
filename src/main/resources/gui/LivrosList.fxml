@@ -6,12 +6,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="326.0" prefWidth="513.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosListController">
          <children>
-            <Label text="Registro de Livros">
+            <Label prefHeight="37.0" prefWidth="168.0" text="Registro de Livros">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -35,5 +37,10 @@
             <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
         </columns>
       </TableView>
+      <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/Logo_soluções_em_técnico_de_informática_azul_e_verde_água_-removebg-preview.png" />
+         </image>
+      </ImageView>
          </children>
 </VBox>
