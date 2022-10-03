@@ -122,7 +122,7 @@ public class ClienteFormController implements Initializable {
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("name", "campo nao pode ser vazio");
         }
-        obj.setName(txtNome.getText());
+        obj.setNome(txtNome.getText());
 
         if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")){
             exception.addError("email", "campo nao pode ser vazio");
@@ -180,7 +180,7 @@ public class ClienteFormController implements Initializable {
         }
 
         txtId.setText(String.valueOf(entity.getId()));
-        txtNome.setText(entity.getName());
+        txtNome.setText(entity.getNome());
         txtEmail.setText(entity.getEmail());
         txtIdade.setText(entity.getIdade());
         txtCpf.setText(entity.getCpf());

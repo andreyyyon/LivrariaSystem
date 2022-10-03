@@ -10,6 +10,7 @@ public class Livros implements Serializable {
     private String genero;
     private String editora;
     private String autor;
+    private Object Livros;
 
     public Livros() {
     }
@@ -17,6 +18,10 @@ public class Livros implements Serializable {
     public Livros(Integer id, String nome, String genero, String editora, String autor) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public void setLivros(String Livros){
+        this.Livros = Livros;
     }
     public Integer getId() {
         return id;
