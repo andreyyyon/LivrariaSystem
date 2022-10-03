@@ -31,11 +31,11 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
+    public String getNome() {
         return nome;
     }
 
-    public void setName(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -47,8 +47,8 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public String getIdade() {
-        return String.valueOf(idade);
+    public int getIdade() {
+        return Integer.valueOf(idade);
     }
 
     public void setIdade(Integer idade) {
@@ -63,7 +63,7 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getEndereco() {
+    public int getEndereco() {
         return endereco;
     }
 
@@ -107,5 +107,9 @@ public class Cliente implements Serializable {
                 ", cpf=" + cpf +
                 ", endereço=" + endereco +
                 '}';
+    }
+
+    public void setLivros(Livros liv) {
+
     }
 }

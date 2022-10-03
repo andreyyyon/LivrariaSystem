@@ -16,4 +16,5 @@ public interface ClienteDao {
     List<Cliente> findAll();
     List<Cliente> findByDepartment(Cliente cliente);
 
+    List<Cliente> findByLivros(Livros livros);
 }

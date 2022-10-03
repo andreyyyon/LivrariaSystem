@@ -3,6 +3,7 @@ package livraria.livrariafx.model.dao.impl;
 import livraria.livrariafx.db.DB;
 import livraria.livrariafx.db.DbException;
 import livraria.livrariafx.model.dao.ClienteDao;
+import livraria.livrariafx.model.entities.Cliente;
 import livraria.livrariafx.model.entities.Livros;
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
-            st.setDate(3, new Date(obj.getBirthDate().getTime()));
-            st.setDouble(4, obj.getBaseSalary());
-            st.setInt(5, obj.getDepartment().getId());
+            st.setInt(3, obj.getIdade());
+            st.setString(4, obj.getCpf());
+            st.setInt(5, obj.getEndereco());
 
             int rowsAffected = st.executeUpdate();
 
@@ -58,16 +59,13 @@ public class ClienteDaoJDBC implements ClienteDao {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement(
-                    "update seller " +
-                            "set nome = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " +
+                    "update Cliente " +
+                            "set nome = ?, Email = ?" +
                             "where id = ?");
 
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
-            st.setDate(3, new Date(obj.getBirthDate().getTime()));
-            st.setDouble(4, obj.getBaseSalary());
-            st.setInt(5, obj.getDepartment().getId());
-            st.setInt(6, obj.getId());
+            st.setInt(3, obj.getId());
 
             st.executeUpdate();
 
@@ -82,7 +80,7 @@ public class ClienteDaoJDBC implements ClienteDao {
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try{
-            st = conn.prepareStatement("delete from seller where Id = ?");
+            st = conn.prepareStatement("delete from Cliente where Id = ?");
 
             st.setInt(1, id);
 
@@ -105,16 +103,15 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select seller.*, department.Name as DepName " +
-                    "from seller inner join department " +
-                    "on seller.DepartmentId = department.Id " +
-                    "where seller.Id = ?");
+                    "select Cliente.*, livros.Nome as livnome " +
+                    "from Cliente inner join livros " +
+                    "where Cliente.Id = ?");
 
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()){
-                Department dep = instantiateLivros(rs);
-                Cliente obj = instantiateCliente(rs, dep);
+                Livros liv = instantiateLivros(rs);
+                Cliente obj = instantiateCliente(rs, liv);
                 return obj;
 
             }
@@ -128,20 +125,17 @@ public class ClienteDaoJDBC implements ClienteDao {
     }
 
     private Livros instantiateLivros(ResultSet rs) throws SQLException {
-        Livros dep = new Livros();
-        dep.setId(rs.getInt("DepartmentId"));
-        dep.setName(rs.getString("DepName"));
-        return dep;
+        Livros liv = new Livros();
+        liv.setNome(rs.getString("livNome"));
+        return liv;
     }
 
-    private Cliente instantiateSeller(ResultSet rs, Livros dep) throws SQLException{
+    private Cliente instantiateCliente(ResultSet rs, Livros liv) throws SQLException{
         Cliente obj = new Cliente();
         obj.setId(rs.getInt("Id"));
-        obj.setName(rs.getString("Name"));
+        obj.setNome((rs.getString("Nome")));
         obj.setEmail(rs.getString("Email"));
-        obj.setBaseSalary(rs.getDouble("BaseSalary"));
-        obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
-        obj.setLivros(dep);
+        obj.setLivros(liv);
         return obj;
     }
     @Override
@@ -150,10 +144,9 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select cliente.*, department.Name as DepName " +
-                    "from seller inner join department " +
-                    "on seller.DepartmentId = department.Id " +
-                    "order by Name");
+                    "select Cliente.*, livros.Nome as livNome " +
+                    "from Cliente inner join livros " +
+                    "order by Nome");
 
             rs = st.executeQuery();
 
@@ -162,14 +155,14 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             while (rs.next()){
 
-                Department dep = map.get(rs.getInt("DepartmentId"));
+ //               Livros livros = map.get(rs.getInt("DepartmentId"));
+//
+//                if (liv == null){
+//                    liv = instantiateLivros(rs);
+//                    map.put(rs.getInt("DepartmentId"), dep);
+//                }
 
-                if (dep == null){
-                    dep = instantiateLivros(rs);
-                    map.put(rs.getInt("DepartmentId"), dep);
-                }
-
-                Cliente obj = instantiateCliente(rs, dep);
+                Cliente obj = instantiateCliente(rs);
                 list.add(obj);
             }
             return list;
@@ -182,17 +175,11 @@ public class ClienteDaoJDBC implements ClienteDao {
     }
 
     @Override
-    public List<Cliente> findByLivros(Livros livros) {
+    public List<Cliente> findByDepartment(Cliente cliente) {
         return null;
     }
 
-    @Override
-    public List<Cliente> findByDepartment(Livros livros) {
-        return null;
-    }
-
-    @Override
-    public List<Cliente> findByDepartment(Livros livros) {
+    private Cliente instantiateCliente(ResultSet rs) {
         return null;
     }
 
@@ -208,7 +195,7 @@ public class ClienteDaoJDBC implements ClienteDao {
                     "where DepartmentId = ? " +
                     "order by Name");
 
-            st.setInt(1, department.getId());
+//            st.setInt(1, department.getId());
 
             rs = st.executeQuery();
 
