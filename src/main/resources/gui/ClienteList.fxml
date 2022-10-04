@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="800.0" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="senac.senacfx.controller.SellerListController">
+<VBox maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="800.0" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.ClienteListController">
          <children>
             <Label prefHeight="56.0" prefWidth="800.0" text="Registro de Clientes">
 
@@ -23,14 +23,15 @@
                   <Insets bottom="10.0" left="20.0" top="10.0" />
                </padding>
             </Label>
-      <TableView fx:id="tableViewSeller" prefHeight="183.0" prefWidth="800.0" stylesheets="@style.css">
+      <TableView fx:id="tableViewcliente" prefHeight="183.0" prefWidth="800.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="68.0" text="Id" />
-          <TableColumn fx:id="tableColumnName" prefWidth="65.5999755859375" text="Nome" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="65.5999755859375" text="Nome" />
             <TableColumn fx:id="tableColumnEmail" prefWidth="77.60000610351562" text="E-mail" />
-            <TableColumn fx:id="tableColumnBirthDate" prefWidth="73.60003662109375" text="Idade" />
-            <TableColumn fx:id="tableColumnBaseSalary" minWidth="8.0" prefWidth="72.0" text="CPF" />
-            <TableColumn fx:id="tableColumnEDIT" prefWidth="84.79998779296875" text="Endereço" />
+            <TableColumn fx:id="tableColumnIdade" prefWidth="73.60003662109375" text="Idade" />
+            <TableColumn fx:id="tableColumnCPF" minWidth="8.0" prefWidth="72.0" text="CPF" />
+            <TableColumn fx:id="tableColumnEndereco" minWidth="8.0" prefWidth="72.0" text="Endereco" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="84.79998779296875" />
         </columns>
       </TableView>
       <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">

@@ -43,10 +43,13 @@ public class ClienteListController implements Initializable, DataChangeListener 
     @FXML
     private TableColumn<Cliente, String> tableColumnEmail;
 
+    @FXML
     private TableColumn<Cliente, Integer>tableColumnIdade;
 
+    @FXML
     private TableColumn<Cliente, Integer>tableColumnCPF;
 
+    @FXML
     private TableColumn<Cliente, Integer>tableColumnEndereco;
     @FXML
     private TableColumn<Cliente, Cliente> tableColumnEDIT;

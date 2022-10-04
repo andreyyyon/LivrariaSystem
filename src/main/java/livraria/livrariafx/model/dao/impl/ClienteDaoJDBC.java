@@ -135,6 +135,7 @@ public class ClienteDaoJDBC implements ClienteDao {
         obj.setId(rs.getInt("Id"));
         obj.setNome((rs.getString("Nome")));
         obj.setEmail(rs.getString("Email"));
+        obj.setIdade(rs.getInt("Idade"));
         obj.setLivros(liv);
         return obj;
     }
@@ -189,7 +190,7 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select seller.*, department.Name as DepName " +
+                    "select cliente.*, department.Name as DepName " +
                     "from seller inner join department " +
                     "on seller.DepartmentId = department.Id " +
                     "where DepartmentId = ? " +

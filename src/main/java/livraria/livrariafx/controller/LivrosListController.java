@@ -39,7 +39,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     private TableColumn<Livros, Integer> tableColumnId;
 
     @FXML
-    private TableColumn<Livros, String> tableColumnName;
+    private TableColumn<Livros, String> tableColumnNome;
 
     @FXML
     private TableColumn<Livros, Livros> tableColumnEDIT;
@@ -73,7 +73,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
 
     private void initializeNodes() {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
         Stage stage = (Stage) Main.getMainScene().getWindow();
         tableViewLivros.prefHeightProperty().bind(stage.heightProperty());
@@ -91,9 +91,9 @@ public class LivrosListController implements Initializable, DataChangeListener {
         initRemoveButtons();
     }
 
-    private void createDialogForm(Livros obj, String absoluteName, Stage parentStage){
+    private void createDialogForm(Livros obj, String absoluteNome, Stage parentStage){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteNome));
             Pane pane = loader.load();
 
             LivrosFormController controller = loader.getController();

@@ -33,11 +33,12 @@
             <Label text="Idade" GridPane.rowIndex="2" />
             <Label text="CPF" GridPane.rowIndex="3" />
             <Label text="Endereço" GridPane.rowIndex="4" />
-            <TextField fx:id="txtName" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNome" GridPane.columnIndex="1" />
             <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefHeight="26.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtBaseSalary" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+             <TextField fx:id="txtIdade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField fx:id="txtCpf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField fx:id="txtEndereço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox prefHeight="46.0" prefWidth="315.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" text="Salvar">

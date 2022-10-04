@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.*;
 
 public class ClienteFormController implements Initializable {
-
     private Cliente entity;
 
     private ClienteService service;
@@ -45,7 +44,7 @@ public class ClienteFormController implements Initializable {
     @FXML
     private TextField txtCpf;
 
-    private TextField txtEndereco;
+    public TextField txtEndereço;
 
     @FXML
     private ComboBox<Livros> comboBoxLivros;
@@ -137,9 +136,11 @@ public class ClienteFormController implements Initializable {
         if (txtCpf.getText() == null){
             exception.addError("cpf", "campo nao pode ser vazio");
         }
-        obj.setCpf(Integer.valueOf(Integer.valueOf(txtCpf.getText())));
-        if (txtEndereco.getText() == null){
-            exception.addError("endereco", "campo nao pode ser vazio");
+        obj.setCpf(Integer.valueOf(txtCpf.getText()));
+
+        if (txtEndereço.getText() == null){
+            exception.addError("endereço", "campo nao pode ser vazio");
+            obj.setEndereco(String.valueOf(txtEndereço.getText()));
         }
 
         if (exception.getErrors().size() > 0){
@@ -166,7 +167,7 @@ public class ClienteFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtEmail, 60);
         Constraints.setTextFieldMaxLength(txtIdade, 3);
         Constraints.setTextFieldMaxLength(txtCpf, 20);
-        Constraints.setTextFieldMaxLength(txtEndereco, 70);
+        Constraints.setTextFieldMaxLength(txtEndereço, 70);
 
 
         initializeComboBoxLivros();
@@ -184,7 +185,7 @@ public class ClienteFormController implements Initializable {
         txtEmail.setText(entity.getEmail());
         txtIdade.setText(String.valueOf(entity.getIdade()));
         txtCpf.setText(entity.getCpf());
-        txtEndereco.setText(entity.getEndereco());
+        txtEndereço.setText(entity.getEndereco());
 
 
         Locale.setDefault(Locale.US);
@@ -194,7 +195,7 @@ public class ClienteFormController implements Initializable {
     public void loadAssociatedObjects(){
 
         if (LivrosService == null){
-            throw new IllegalStateException("DepartmentService was null");
+            throw new IllegalStateException("LivrosService was null");
         }
 
         List<Livros> list = LivrosService.findAll();
@@ -205,7 +206,7 @@ public class ClienteFormController implements Initializable {
     private void setErrorMessages(Map<String, String> errors){
         Set<String> fields = errors.keySet();
 
-        labelErrorNome.setText((fields.contains("name") ? errors.get("name") : ""));
+        labelErrorNome.setText((fields.contains("nome") ? errors.get("nome") : ""));
         labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
         labelErrorIdade.setText((fields.contains("idade") ? errors.get("idade") : ""));
         labelErrorCpf.setText((fields.contains("cpf") ? errors.get("cpf") : ""));
