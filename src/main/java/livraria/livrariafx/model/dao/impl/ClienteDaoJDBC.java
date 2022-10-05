@@ -179,15 +179,6 @@ public class ClienteDaoJDBC implements ClienteDao {
     }
 
     @Override
-    public List<Cliente> findByCliente(Cliente cliente) {
-        return null;
-    }
-
-    private Cliente instantiateCliente(ResultSet rs) {
-        return null;
-    }
-
-    @Override
     public List<Cliente> findByLivros(Livros livros) {
         PreparedStatement st = null;
         ResultSet rs = null;
