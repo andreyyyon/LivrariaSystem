@@ -60,12 +60,15 @@ public class ClienteDaoJDBC implements ClienteDao {
         try{
             st = conn.prepareStatement(
                     "update Cliente " +
-                            "set nome = ?, email = ?" +
+                            "set nome = ?, email = ?, idade = ?, cpf = ?, endereco = ? " +
                             "where id = ?");
 
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
-            st.setInt(3, obj.getId());
+            st.setInt(3, obj.getIdade());
+            st.setString(4, obj.getCpf());
+            st.setString(5, obj.getEndereco());
+            st.setInt(6, obj.getId());
 
             st.executeUpdate();
 
@@ -103,8 +106,8 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select Cliente.*, livros.Nome as livnome " +
-                    "from Cliente inner join livros " +
+                    "select Cliente.*, Livros.nome as livnome " +
+                    "from Cliente inner join Livros " +
                     "where Cliente.Id = ?");
 
             st.setInt(1, id);
@@ -145,9 +148,9 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select Cliente.*, livros.Nome as livNome " +
-                    "from Cliente inner join livros " +
-                    "order by Nome");
+                    "select Cliente.*, Livros.nome as livNome " +
+                    "from Cliente inner join Livros " +
+                    "order by nome");
 
             rs = st.executeQuery();
 
@@ -156,14 +159,14 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             while (rs.next()){
 
- //               Livros livros = map.get(rs.getInt("DepartmentId"));
-//
-//                if (liv == null){
-//                    liv = instantiateLivros(rs);
-//                    map.put(rs.getInt("DepartmentId"), dep);
-//                }
+                Livros liv = map.get(rs.getInt("LivrosId"));
 
-                Cliente obj = instantiateCliente(rs);
+                if (liv == null){
+                    liv = instantiateLivros(rs);
+                    map.put(rs.getInt("LivrosId"), liv);
+                }
+
+                Cliente obj = instantiateCliente(rs, liv);
                 list.add(obj);
             }
             return list;
@@ -176,7 +179,7 @@ public class ClienteDaoJDBC implements ClienteDao {
     }
 
     @Override
-    public List<Cliente> findByDepartment(Cliente cliente) {
+    public List<Cliente> findByCliente(Cliente cliente) {
         return null;
     }
 
@@ -190,11 +193,11 @@ public class ClienteDaoJDBC implements ClienteDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select cliente.*, department.Name as DepName " +
-                    "from seller inner join department " +
-                    "on seller.DepartmentId = department.Id " +
-                    "where DepartmentId = ? " +
-                    "order by Name");
+                    "select Cliente.*, Livros.nome as LivNome " +
+                    "from Cliente inner join Livros " +
+                    "on Cliente.LivrosId = Livros.Id " +
+                    "where LivrosId = ? " +
+                    "order by nome");
 
 //            st.setInt(1, department.getId());
 
@@ -205,14 +208,14 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             while (rs.next()){
 
-                Livros dep = map.get(rs.getInt("DepartmentId"));
+                Livros liv = map.get(rs.getInt("LivrosId"));
 
-                if (dep == null){
-                    dep = instantiateLivros(rs);
-                    map.put(rs.getInt("DepartmentId"), dep);
+                if (liv == null){
+                    liv = instantiateLivros(rs);
+                    map.put(rs.getInt("LivrosId"), liv);
                 }
 
-                Cliente obj = instantiateCliente(rs, dep);
+                Cliente obj = instantiateCliente(rs, liv);
                 list.add(obj);
             }
             return list;

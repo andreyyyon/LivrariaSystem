@@ -58,7 +58,7 @@ public class LivrosDaoJDBC implements LivrosDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("update Livros " +
-                    "set nome = ?, set genero = ?, set editora = ?, set autor = ? " +
+                    "set nome = ?, genero = ?, editora = ?, autor = ? " +
                     "where Id = ?");
 
             st.setString(1, obj.getNome());
