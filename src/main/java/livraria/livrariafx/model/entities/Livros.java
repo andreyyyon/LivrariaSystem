@@ -47,11 +47,11 @@ public class Livros implements Serializable {
         this.genero = genero;
     }
 
-    public String getEditoria() {
+    public String getEditora() {
         return editora;
     }
 
-    public void setEditoria(String editoria) {
+    public void setEditora(String editoria) {
         this.editora = editoria;
     }
 

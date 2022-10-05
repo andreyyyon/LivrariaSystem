@@ -23,11 +23,14 @@ public class LivrosDaoJDBC implements LivrosDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("insert into livros " +
-                            "(nome) " +
-                            "values (?) ",
+                            "(nome, genero, editora, autor) " +
+                            "values (?, ?, ?, ?) ",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setString(1, obj.getNome());
+            st.setString(2, obj.getGenero());
+            st.setString(3, obj.getEditora());
+            st.setString(4, obj.getAutor());
 
             int rowsAffected = st.executeUpdate();
 
@@ -55,11 +58,14 @@ public class LivrosDaoJDBC implements LivrosDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("update Livros " +
-                    "set Name = ? " +
+                    "set nome = ?, set genero = ?, set editora = ?, set autor = ? " +
                     "where Id = ?");
 
             st.setString(1, obj.getNome());
-            st.setInt(2, obj.getId());
+            st.setString(2, obj.getGenero());
+            st.setString(3, obj.getEditora());
+            st.setString(4, obj.getAutor());
+            st.setInt(5, obj.getId());
 
             int rowsAffected = st.executeUpdate();
 
@@ -125,7 +131,7 @@ public class LivrosDaoJDBC implements LivrosDao {
     private Livros instantiateLivros(ResultSet rs) throws SQLException {
         Livros liv = new Livros();
         liv.setId(rs.getInt("Id"));
-        liv.setNome(rs.getString("Name"));
+        liv.setNome(rs.getString("nome"));
         return liv;
     }
 
@@ -136,8 +142,8 @@ public class LivrosDaoJDBC implements LivrosDao {
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select * from department "+
-                    "order by Name");
+                    "select * from Livros "+
+                    "order by nome");
 
             rs = st.executeQuery();
 
@@ -146,14 +152,14 @@ public class LivrosDaoJDBC implements LivrosDao {
 
             while (rs.next()){
 
-                Livros dep = map.get(rs.getInt("Id"));
+                Livros liv = map.get(rs.getInt("Id"));
 
-                if (dep == null){
-                    dep = instantiateLivros(rs);
-                    map.put(rs.getInt("Id"), dep);
+                if (liv == null){
+                    liv = instantiateLivros(rs);
+                    map.put(rs.getInt("Id"), liv);
                 }
 
-                list.add(dep);
+                list.add(liv);
 
             }
             return list;

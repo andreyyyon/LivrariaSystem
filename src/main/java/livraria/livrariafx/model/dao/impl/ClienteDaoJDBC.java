@@ -60,7 +60,7 @@ public class ClienteDaoJDBC implements ClienteDao {
         try{
             st = conn.prepareStatement(
                     "update Cliente " +
-                            "set nome = ?, Email = ?" +
+                            "set nome = ?, email = ?" +
                             "where id = ?");
 
             st.setString(1, obj.getNome());
