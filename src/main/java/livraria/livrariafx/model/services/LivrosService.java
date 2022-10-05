@@ -9,7 +9,7 @@ import java.util.List;
 public class LivrosService {
 
     //dependencia injetada usando padrao factory
-    private LivrosDao dao = DaoFactory.createLivrosDao();
+    private final LivrosDao dao = DaoFactory.createLivrosDao();
 
     public List<Livros> findAll() {
         return dao.findAll();

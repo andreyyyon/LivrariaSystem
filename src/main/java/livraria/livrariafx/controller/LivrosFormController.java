@@ -25,7 +25,7 @@ public class LivrosFormController implements Initializable {
 
     private LivrosService service;
 
-    private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+    private final List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
     @FXML
     private TextField txtId;

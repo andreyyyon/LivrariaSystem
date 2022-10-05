@@ -27,7 +27,7 @@ public class ClienteFormController implements Initializable {
 
     private LivrosService LivrosService;
 
-    private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+    private final List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
     @FXML
     private TextField txtId;
@@ -68,6 +68,9 @@ public class ClienteFormController implements Initializable {
     private Button btCancel;
 
     private ObservableList<Livros> obsList;
+
+    public ClienteFormController() {
+    }
 
     //Contolador agora tem uma instancia do departamento
     public void setCliente(Cliente entity){
@@ -224,6 +227,7 @@ public class ClienteFormController implements Initializable {
             }
         };
         ComboBox<Livros> comboBoxLivros = null;
+        assert comboBoxLivros != null;
         comboBoxLivros.setCellFactory(factory);
         comboBoxLivros.setButtonCell(factory.call(null));
     }

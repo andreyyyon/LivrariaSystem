@@ -1,9 +1,11 @@
 package livraria.livrariafx.model.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Livros implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String nome;
@@ -18,6 +20,9 @@ public class Livros implements Serializable {
     public Livros(Integer id, String nome, String genero, String editora, String autor) {
         this.id = id;
         this.nome = nome;
+        this.editora = editora;
+        this.genero = genero;
+        this.autor = autor;
     }
 
     public void setLivros(String Livros){
@@ -39,20 +44,18 @@ public class Livros implements Serializable {
         this.nome = nome;
     }
 
-    public String getGenero() {
-        return genero;
-    }
+    public String getGenero() { return genero; }
 
     public void setGenero(String genero) {
         this.genero = genero;
     }
 
-    public String getEditoria() {
+    public String getEditora() {
         return editora;
     }
 
-    public void setEditoria(String editoria) {
-        this.editora = editoria;
+    public void setEditora(String editora) {
+        this.editora = editora;
     }
 
     public String getAutor() {

@@ -1,9 +1,11 @@
 package livraria.livrariafx.model.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Person implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
@@ -14,8 +16,8 @@ public class Person implements Serializable {
 
     public Person(Integer id, String name, String email) {
         this.id = id;
-        this.name = name;
         this.email = email;
+        this.name = name;
     }
 
     public Integer getId() {

@@ -56,7 +56,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
         Livros obj = new Livros();
-        createDialogForm(obj, "/gui/LivrosForm.fxml", parentStage);
+        createDialogForm(obj, parentStage);
     }
 
     //feito isso usando um set, para injetar dependencia, boa pratica
@@ -91,9 +91,9 @@ public class LivrosListController implements Initializable, DataChangeListener {
         initRemoveButtons();
     }
 
-    private void createDialogForm(Livros obj, String absoluteNome, Stage parentStage){
+    private void createDialogForm(Livros obj, Stage parentStage){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteNome));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LivrosForm.fxml"));
             Pane pane = loader.load();
 
             LivrosFormController controller = loader.getController();
@@ -135,7 +135,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
                 setGraphic(button);
                 button.setOnAction(
                         event -> createDialogForm(
-                                obj, "/gui/LivrosForm.fxml",Utils.currentStage(event)));
+                                obj, Utils.currentStage(event)));
             }
         });
     }
@@ -159,7 +159,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     }
 
     private void removeEntity(Livros obj) {
-        Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Confirma que quer deletar?");
+        Optional<ButtonType> result = Alerts.showConfirmation("Confirmar", "Confirma que quer deletar?");
 
         if (result.get() == ButtonType.OK){
             if (service == null){

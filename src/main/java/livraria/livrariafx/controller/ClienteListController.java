@@ -59,8 +59,6 @@ public class ClienteListController implements Initializable, DataChangeListener 
     @FXML
     private Button btNew;
 
-    private ObservableList<Cliente> obsList;
-
     @FXML
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
@@ -100,15 +98,15 @@ public class ClienteListController implements Initializable, DataChangeListener 
             throw new IllegalStateException("Service is null!");
         }
         List<Cliente> list = service.findAll();
-        obsList = (ObservableList<Cliente>) FXCollections.observableArrayList(list);
+        ObservableList<Cliente> obsList = (ObservableList<Cliente>) FXCollections.observableArrayList(list);
         tableViewcliente.setItems(obsList);
         initEditButtons();
         initRemoveButtons();
     }
 
-    private void createDialogForm(Cliente obj, String absoluteName, Stage parentStage){
+    private void createDialogForm(Cliente obj, String absoluteNome, Stage parentStage){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteNome));
             Pane pane = loader.load();
 
             ClienteFormController controller = loader.getController();
@@ -119,7 +117,7 @@ public class ClienteListController implements Initializable, DataChangeListener 
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Enter seller data");
+            dialogStage.setTitle("Enter cliente data");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parentStage);
@@ -175,7 +173,7 @@ public class ClienteListController implements Initializable, DataChangeListener 
     }
 
     private void removeEntity(Cliente obj) {
-        Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Confirma que quer deletar?");
+        Optional<ButtonType> result = Alerts.showConfirmation("Confirmar", "Confirma que quer deletar?");
 
         if (result.get() == ButtonType.OK){
             if (service == null){

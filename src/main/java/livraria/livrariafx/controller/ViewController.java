@@ -73,7 +73,7 @@ public class ViewController implements Initializable {
         list.add(new Person(2, "John", "snow@gmail.com"));
         list.add(new Person(3, "Marcos", "marcoveio@gmail.com"));
 
-        obsList = FXCollections.observableArrayList(list);
+        ObservableList<Person> obsList = FXCollections.observableArrayList(list);
         combo1.setItems(obsList);
 
         Callback<ListView<Person>, ListCell<Person>> factory = lv -> new ListCell<Person>() {

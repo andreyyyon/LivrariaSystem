@@ -1,8 +1,10 @@
 package livraria.livrariafx.model.entities;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String nome;
@@ -48,7 +50,7 @@ public class Cliente implements Serializable {
     }
 
     public Integer getIdade() {
-        return Integer.valueOf(idade);
+        return idade;
     }
 
     public void setIdade(Integer idade) {
