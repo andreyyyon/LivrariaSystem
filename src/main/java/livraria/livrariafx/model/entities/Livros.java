@@ -51,8 +51,8 @@ public class Livros implements Serializable {
         return editora;
     }
 
-    public void setEditora(String editoria) {
-        this.editora = editoria;
+    public void setEditora(String editora) {
+        this.editora = editora;
     }
 
     public String getAutor() {
