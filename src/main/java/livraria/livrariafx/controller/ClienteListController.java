@@ -60,6 +60,12 @@ public class ClienteListController implements Initializable, DataChangeListener 
     private Button btNew;
 
     @FXML
+    private Button btEdit;
+
+    @FXML
+    private Button btRemove;
+
+    @FXML
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
         Cliente obj = new Cliente();

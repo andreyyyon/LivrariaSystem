@@ -49,6 +49,9 @@ public class LivrosListController implements Initializable, DataChangeListener {
 
     @FXML
     private Button btNew;
+    public Button btEdit;
+    public Button btRemove;
+
 
     private ObservableList<Livros> obsList;
 

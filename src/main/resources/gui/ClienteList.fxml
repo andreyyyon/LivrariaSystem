@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -32,13 +31,12 @@
             <TableColumn fx:id="tableColumnIdade" prefWidth="73.60003662109375" text="Idade" />
             <TableColumn fx:id="tableColumnCPF" minWidth="8.0" prefWidth="72.0" text="CPF" />
             <TableColumn fx:id="tableColumnEndereco" minWidth="8.0" prefWidth="72.0" text="Endereco" />
-            <TableColumn fx:id="tableColumnEDIT" prefWidth="84.79998779296875" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="84.7999877929687" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" text="Remover" />
-      <Button mnemonicParsing="false" text="Confirmar" />
              <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@../../../../../../../../Downloads/Logo_soluções_em_técnico_de_informática_azul_e_verde_água_-removebg-preview.png"/>
+                 <Image url="@../../../../../../../../Downloads/Logo_soluções_em_técnico_de_informática_azul_e_verde_água_-removebg-preview.png" />
              </ImageView>
          </children>
 </VBox>
