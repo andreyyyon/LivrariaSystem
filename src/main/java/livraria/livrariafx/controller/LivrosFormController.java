@@ -33,6 +33,12 @@ public class LivrosFormController implements Initializable {
     @FXML
     private TextField txtNome;
 
+    private TextField txtGênero;
+
+    private TextField txtEditora;
+
+    private TextField txtAutor;
+
     @FXML
     private Label labelErrorNome;
 
@@ -41,6 +47,7 @@ public class LivrosFormController implements Initializable {
 
     @FXML
     private Button btCancel;
+
 
     //Contolador agora tem uma instancia do Livros
     public void setLivros(Livros entity){
@@ -92,6 +99,11 @@ public class LivrosFormController implements Initializable {
 
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("nome", "campo nao pode ser vazio");
+        }
+        obj.setNome(txtNome.getText());
+
+        if (txtAutor.getText() == null || txtNome.getText().trim().equals("")){
+            exception.addError("autor", "campo nao pode ser vazio");
         }
         obj.setNome(txtNome.getText());
 

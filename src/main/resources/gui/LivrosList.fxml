@@ -25,15 +25,14 @@
     </Label>
     <ToolBar prefHeight="40.0" prefWidth="200.0">
         <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" styleClass="button-new" text="Novo" />
-        <Button fx:id="btEdit" mnemonicParsing="false" onAction="#onBtNewAction" prefHeight="18.0" prefWidth="83.0" styleClass="button-new" text="Editar" />
-        <Button fx:id="btRemove" mnemonicParsing="false" onAction="#onBtNewAction" styleClass="button-new" text="Remover" />
     </ToolBar>
     <TableView fx:id="tableViewLivros" prefHeight="200.0" prefWidth="200.0">
       <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" />
-          <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
+          <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" text="Gênero" />
+          <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" text="Editora" />
+         <TableColumn prefWidth="75.0" text="Autor" />
       </columns>
     </TableView>
     <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">

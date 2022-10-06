@@ -11,7 +11,7 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosFormController">
     <GridPane layoutX="41.0" layoutY="99.0" prefHeight="202.0" prefWidth="451.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.5999755859375" minWidth="10.0"

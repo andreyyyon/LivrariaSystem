@@ -59,7 +59,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
         Livros obj = new Livros();
-        createDialogForm(obj, parentStage);
+        createDialogForm(obj, "/gui/LivrosForm.fxml", parentStage);
     }
 
     //feito isso usando um set, para injetar dependencia, boa pratica
@@ -94,7 +94,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
         initRemoveButtons();
     }
 
-    private void createDialogForm(Livros obj, Stage parentStage){
+    private void createDialogForm(Livros obj, String absoluteNome, Stage parentStage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LivrosForm.fxml"));
             Pane pane = loader.load();
@@ -137,8 +137,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
                 }
                 setGraphic(button);
                 button.setOnAction(
-                        event -> createDialogForm(
-                                obj, Utils.currentStage(event)));
+                        event -> createDialogForm(obj,"/gui/LivrosForm.fxml", Utils.currentStage(event)));
             }
         });
     }

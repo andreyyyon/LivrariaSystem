@@ -1,5 +1,4 @@
 package livraria.livrariafx.model.entities;
-
 import java.io.Serial;
 import java.io.Serializable;
 
