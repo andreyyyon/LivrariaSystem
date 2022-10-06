@@ -132,6 +132,10 @@ public class LivrosDaoJDBC implements LivrosDao {
         Livros liv = new Livros();
         liv.setId(rs.getInt("Id"));
         liv.setNome(rs.getString("nome"));
+        liv.setGenero(rs.getString("genero"));
+        liv.setEditora(rs.getString("editora"));
+        liv.setAutor(rs.getString("autor"));
+
         return liv;
     }
 
