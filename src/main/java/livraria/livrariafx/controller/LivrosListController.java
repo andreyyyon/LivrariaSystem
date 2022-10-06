@@ -42,6 +42,15 @@ public class LivrosListController implements Initializable, DataChangeListener {
     private TableColumn<Livros, String> tableColumnNome;
 
     @FXML
+    private TableColumn<Livros, String> tableColumnGênero;
+
+    @FXML
+    private TableColumn<Livros, String> tableColumnEditora;
+
+    @FXML
+    private TableColumn<Livros, String> tableColumnAutor;
+
+    @FXML
     private TableColumn<Livros, Livros> tableColumnEDIT;
 
     @FXML
@@ -49,8 +58,6 @@ public class LivrosListController implements Initializable, DataChangeListener {
 
     @FXML
     private Button btNew;
-    public Button btEdit;
-    public Button btRemove;
 
 
     private ObservableList<Livros> obsList;
@@ -77,6 +84,9 @@ public class LivrosListController implements Initializable, DataChangeListener {
     private void initializeNodes() {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnGênero.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
+        tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
 
         Stage stage = (Stage) Main.getMainScene().getWindow();
         tableViewLivros.prefHeightProperty().bind(stage.heightProperty());
@@ -94,7 +104,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
         initRemoveButtons();
     }
 
-    private void createDialogForm(Livros obj, String absoluteNome, Stage parentStage){
+    private void createDialogForm(Livros obj, String absoluteName, Stage parentStage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LivrosForm.fxml"));
             Pane pane = loader.load();
@@ -176,4 +186,15 @@ public class LivrosListController implements Initializable, DataChangeListener {
         }
     }
 
+    public void setTableColumnGênero(TableColumn<Livros, String> tableColumnGênero) {
+        this.tableColumnGênero = tableColumnGênero;
+    }
+
+    public void setTableColumnEditora(TableColumn<Livros, String> tableColumnEditora) {
+        this.tableColumnEditora = tableColumnEditora;
+    }
+
+    public void setTableColumnAutor(TableColumn<Livros, String> tableColumnAutor) {
+        this.tableColumnAutor = tableColumnAutor;
+    }
 }

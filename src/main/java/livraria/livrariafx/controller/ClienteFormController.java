@@ -58,7 +58,7 @@ public class ClienteFormController implements Initializable {
 
     @FXML
     private Label labelErrorCpf;
-
+    @FXML
     private Label labelErrorEndereco;
 
     @FXML

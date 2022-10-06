@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="326.0" prefWidth="513.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosListController">
+<VBox prefHeight="326.0" prefWidth="578.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.LivrosListController">
     <Label prefHeight="37.0" prefWidth="168.0" text="Registro de Livros">
         <font>
             <Font name="System Bold" size="18.0" />
@@ -28,11 +28,13 @@
     </ToolBar>
     <TableView fx:id="tableViewLivros" prefHeight="200.0" prefWidth="200.0">
       <columns>
-          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" text="Gênero" />
-          <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" text="Editora" />
-         <TableColumn prefWidth="75.0" text="Autor" />
+          <TableColumn fx:id="tableColumnId" prefWidth="58.3999679684639" text="Id" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="67.99999618530273" text="Nome" />
+          <TableColumn fx:id="tableColumnGênero" prefWidth="62.4000244140625" text="Gênero" />
+          <TableColumn fx:id="tableColumnEditora" prefWidth="72.0" text="Editora" />
+          <TableColumn fx:id="tableColumnAutor" prefWidth="88.0" text="Autor" />
+         <TableColumn fx:id="tableColumnEDIT" prefWidth="88.79998779296875" />
+         <TableColumn fx:id="tableColumnREMOVE" prefWidth="89.60003662109375" />
       </columns>
     </TableView>
     <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">

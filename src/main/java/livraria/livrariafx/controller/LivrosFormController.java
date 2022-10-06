@@ -32,15 +32,21 @@ public class LivrosFormController implements Initializable {
 
     @FXML
     private TextField txtNome;
-
+    @FXML
     private TextField txtGênero;
-
+    @FXML
     private TextField txtEditora;
-
+    @FXML
     private TextField txtAutor;
 
     @FXML
     private Label labelErrorNome;
+    @FXML
+    private Label labelErrorGênero;
+    @FXML
+    private Label labelErrorEditora;
+    @FXML
+    private Label labelErrorAutor;
 
     @FXML
     private Button btSave;
@@ -102,10 +108,20 @@ public class LivrosFormController implements Initializable {
         }
         obj.setNome(txtNome.getText());
 
-        if (txtAutor.getText() == null || txtNome.getText().trim().equals("")){
+        if (txtGênero.getText() == null || txtGênero.getText().trim().equals("")){
+            exception.addError("genero", "campo nao pode ser vazio");
+        }
+        obj.setGenero(txtGênero.getText());
+
+        if (txtEditora.getText() == null || txtEditora.getText().trim().equals("")){
+            exception.addError("editora", "campo nao pode ser vazio");
+        }
+        obj.setEditora(txtEditora.getText());
+
+        if (txtAutor.getText() == null || txtAutor.getText().trim().equals("")){
             exception.addError("autor", "campo nao pode ser vazio");
         }
-        obj.setNome(txtNome.getText());
+        obj.setAutor(txtAutor.getText());
 
         if (exception.getErrors().size() > 0){
             throw exception;
@@ -128,6 +144,10 @@ public class LivrosFormController implements Initializable {
     private void initializeNodes() {
         Constraints.setTextFieldInteger(txtId);
         Constraints.setTextFieldMaxLength(txtNome, 30);
+        Constraints.setTextFieldMaxLength(txtGênero, 30);
+        Constraints.setTextFieldMaxLength(txtEditora, 30);
+        Constraints.setTextFieldMaxLength(txtAutor, 30);
+
 
     }
 
@@ -138,14 +158,28 @@ public class LivrosFormController implements Initializable {
 
         txtId.setText(String.valueOf(entity.getId()));
         txtNome.setText(entity.getNome());
+        txtGênero.setText(entity.getGenero());
+        txtEditora.setText(entity.getEditora());
+        txtAutor.setText(entity.getAutor());
     }
 
-    private void setErrorMessages(Map<String, String> errors){
+    private void setErrorMessages(Map<String, String> errors) {
         Set<String> fields = errors.keySet();
 
-        if (fields.contains("nome")){
+        if (fields.contains("nome")) {
             labelErrorNome.setText(errors.get("nome"));
+
+            if (fields.contains("genero")) {
+                labelErrorGênero.setText(errors.get("genero"));
+
+                if (fields.contains("editora")) {
+                    labelErrorEditora.setText(errors.get("editora"));
+
+                    if (fields.contains("autor")) {
+                        labelErrorAutor.setText(errors.get("autor"));
+                    }
+                }
+            }
         }
     }
-
 }
