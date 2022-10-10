@@ -1,0 +1,47 @@
+create database Livraria;
+use Livraria;
+
+create table Cliente(
+id int(20) auto_increment primary key,
+nome varchar(150) not null,
+email varchar(150) not null,
+idade int(20) not null,
+cpf varchar(15) not null,
+endereco varchar(100)
+)Engine=InnoDB default charset=utf8;
+select * from Cliente;
+
+create table Livros(
+id int(20) auto_increment primary key,
+nome varchar(150) not null,
+genero varchar(50) not null,
+editora varchar(150) not null,
+autor varchar(150) not null
+)engine=innodb default charset=utf8;
+
+#create table Historico(
+#id_cliente int(20) auto_increment primary key,
+#foreign key (id_cliente) references Cliente(id),
+#nome_cliente varchar(150) not null,
+#foreign key (nome_cliente) references Cliente(nome),
+#id_livros int(20) auto_increment primary key,
+#foreign key (id_livros) references Livros(id),
+#nome_livros varchar(150) not null,
+#foreign key (nome_livros) references Livros(nome)
+#)Engine=InnoDB default charset=utf8;
+
+
+
+
+select * from livros;
+select genero from livros;
+select editora from livros;
+
+
+insert into livros values(null, 'Livro 1','Ficção Cientifica','Editora 1', 'Autor 1');
+insert into livros values(null, 'Livro 2','Fantasia','Editora 2', 'Autor 2');
+insert into livros values(null, 'Livro 3','Finanças','Editora 3', 'Autor 3');
+insert into livros values(null, 'Livro 4','Romance','Editora 4', 'Autor 4');
+insert into livros values(null, 'Livro 5','Desenvolvimento Pessoal','Editora 5', 'Autor 5');
+insert into livros values(null, 'Livro 6','Suspense','Editora 6', 'Autor 6');
+insert into livros values(null, 'Livro 7','Terror','Editora 7', 'Autor 7');
