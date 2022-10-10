@@ -159,11 +159,11 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             while (rs.next()){
 
-                Livros liv = map.get(rs.getInt("LivrosId"));
+                Livros liv = map.get(rs.getInt("Id"));
 
                 if (liv == null){
                     liv = instantiateLivros(rs);
-                    map.put(rs.getInt("LivrosId"), liv);
+                    map.put(rs.getInt("Id"), liv);
                 }
 
                 Cliente obj = instantiateCliente(rs, liv);
@@ -186,8 +186,8 @@ public class ClienteDaoJDBC implements ClienteDao {
             st = conn.prepareStatement("" +
                     "select Cliente.*, Livros.nome as LivNome " +
                     "from Cliente inner join Livros " +
-                    "on Cliente.LivrosId = Livros.Id " +
-                    "where LivrosId = ? " +
+                    "on Cliente.Id = Livros.Id " +
+                    "where Id = ? " +
                     "order by nome");
 
 //            st.setInt(1, department.getId());
@@ -199,11 +199,11 @@ public class ClienteDaoJDBC implements ClienteDao {
 
             while (rs.next()){
 
-                Livros liv = map.get(rs.getInt("LivrosId"));
+                Livros liv = map.get(rs.getInt("Id"));
 
                 if (liv == null){
                     liv = instantiateLivros(rs);
-                    map.put(rs.getInt("LivrosId"), liv);
+                    map.put(rs.getInt("Id"), liv);
                 }
 
                 Cliente obj = instantiateCliente(rs, liv);
