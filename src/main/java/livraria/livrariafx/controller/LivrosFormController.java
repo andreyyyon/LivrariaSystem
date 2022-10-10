@@ -33,16 +33,17 @@ public class LivrosFormController implements Initializable {
     @FXML
     private TextField txtNome;
     @FXML
-    private TextField txtGênero;
+    private TextField txtGenero;
     @FXML
     private TextField txtEditora;
     @FXML
     private TextField txtAutor;
-
+    @FXML
+    private Label labelErrorId;
     @FXML
     private Label labelErrorNome;
     @FXML
-    private Label labelErrorGênero;
+    private Label labelErrorGenero;
     @FXML
     private Label labelErrorEditora;
     @FXML
@@ -108,10 +109,10 @@ public class LivrosFormController implements Initializable {
         }
         obj.setNome(txtNome.getText());
 
-        if (txtGênero.getText() == null || txtGênero.getText().trim().equals("")){
+        if (txtGenero.getText() == null || txtGenero.getText().trim().equals("")){
             exception.addError("genero", "campo nao pode ser vazio");
         }
-        obj.setGenero(txtGênero.getText());
+        obj.setGenero(txtGenero.getText());
 
         if (txtEditora.getText() == null || txtEditora.getText().trim().equals("")){
             exception.addError("editora", "campo nao pode ser vazio");
@@ -136,6 +137,7 @@ public class LivrosFormController implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeNodes();
@@ -144,7 +146,7 @@ public class LivrosFormController implements Initializable {
     private void initializeNodes() {
         Constraints.setTextFieldInteger(txtId);
         Constraints.setTextFieldMaxLength(txtNome, 30);
-        Constraints.setTextFieldMaxLength(txtGênero, 30);
+        Constraints.setTextFieldMaxLength(txtGenero, 30);
         Constraints.setTextFieldMaxLength(txtEditora, 30);
         Constraints.setTextFieldMaxLength(txtAutor, 30);
 
@@ -158,7 +160,7 @@ public class LivrosFormController implements Initializable {
 
         txtId.setText(String.valueOf(entity.getId()));
         txtNome.setText(entity.getNome());
-        txtGênero.setText(entity.getGenero());
+        txtGenero.setText(entity.getGenero());
         txtEditora.setText(entity.getEditora());
         txtAutor.setText(entity.getAutor());
     }
@@ -170,7 +172,7 @@ public class LivrosFormController implements Initializable {
             labelErrorNome.setText(errors.get("nome"));
 
             if (fields.contains("genero")) {
-                labelErrorGênero.setText(errors.get("genero"));
+                labelErrorGenero.setText(errors.get("genero"));
 
                 if (fields.contains("editora")) {
                     labelErrorEditora.setText(errors.get("editora"));
