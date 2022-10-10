@@ -1,0 +1,22 @@
+create database Livraria;
+use livraria;
+
+create table Cliente(
+	id bigint(20) auto_increment,
+    nome varchar(150) not null,
+    idade bigint(100) not null,
+    endereco varchar(150),
+    telefone varchar(30) not null,
+    cpf varchar(15) not null,
+    primary key(id)
+);
+
+#create table livros(
+#	id bigint(20) auto_increment,
+#    nome varchar(150) not null,
+#    data_nascimento date not null,
+#    endereco varchar(150),
+#    telefone varchar(30) not null,
+#    cpf varchar(15) not null,
+#    primary key(id)
+#);
