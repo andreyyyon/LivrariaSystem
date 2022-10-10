@@ -30,7 +30,7 @@
       <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="58.3999679684639" text="Id" />
           <TableColumn fx:id="tableColumnNome" prefWidth="67.99999618530273" text="Nome" />
-          <TableColumn fx:id="tableColumnGênero" prefWidth="62.4000244140625" text="Gênero" />
+          <TableColumn fx:id="tableColumnGenero" prefWidth="62.4000244140625" text="Genero" />
           <TableColumn fx:id="tableColumnEditora" prefWidth="72.0" text="Editora" />
           <TableColumn fx:id="tableColumnAutor" prefWidth="88.0" text="Autor" />
          <TableColumn fx:id="tableColumnEDIT" prefWidth="88.79998779296875" />

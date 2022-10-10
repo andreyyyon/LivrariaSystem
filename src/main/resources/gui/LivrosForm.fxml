@@ -30,7 +30,7 @@
                             prefHeight="31.999981689453122" vgrow="SOMETIMES"/>
         </rowConstraints>
         <Label prefHeight="18.0" prefWidth="62.0" text="Nome"/>
-        <Label prefHeight="18.0" prefWidth="60.0" text="Gênero" GridPane.rowIndex="1"/>
+        <Label prefHeight="18.0" prefWidth="60.0" text="Genero" GridPane.rowIndex="1"/>
         <Label prefHeight="18.0" prefWidth="56.0" text="Editora" GridPane.rowIndex="2"/>
         <Label prefHeight="18.0" prefWidth="62.0" text="Autor" GridPane.rowIndex="3"/>
         <TextField GridPane.columnIndex="1"/>
