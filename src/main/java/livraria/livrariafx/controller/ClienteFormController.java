@@ -44,7 +44,8 @@ public class ClienteFormController implements Initializable {
     @FXML
     private TextField txtCpf;
 
-    public TextField txtEndereço;
+    @FXML
+    public TextField txtEndereco;
 
     @FXML
     private ComboBox<Livros> comboBoxLivros;
@@ -141,9 +142,9 @@ public class ClienteFormController implements Initializable {
         }
         obj.setCpf(Integer.valueOf(txtCpf.getText()));
 
-        if (txtEndereço.getText() == null){
-            exception.addError("endereço", "campo nao pode ser vazio");
-            obj.setEndereco(String.valueOf(txtEndereço.getText()));
+        if (txtEndereco.getText() == null){
+            exception.addError("endereco", "campo nao pode ser vazio");
+            obj.setEndereco(String.valueOf(txtEndereco.getText()));
         }
 
         if (exception.getErrors().size() > 0){
@@ -170,7 +171,7 @@ public class ClienteFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtEmail, 60);
         Constraints.setTextFieldMaxLength(txtIdade, 3);
         Constraints.setTextFieldMaxLength(txtCpf, 20);
-        Constraints.setTextFieldMaxLength(txtEndereço, 70);
+        Constraints.setTextFieldMaxLength(txtEndereco, 70);
 
 
         initializeComboBoxLivros();
@@ -188,7 +189,7 @@ public class ClienteFormController implements Initializable {
         txtEmail.setText(entity.getEmail());
         txtIdade.setText(String.valueOf(entity.getIdade()));
         txtCpf.setText(entity.getCpf());
-        txtEndereço.setText(entity.getEndereco());
+        txtEndereco.setText(entity.getEndereco());
 
 
         Locale.setDefault(Locale.US);
