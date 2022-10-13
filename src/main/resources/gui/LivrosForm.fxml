@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -16,22 +17,27 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.800048828125" minWidth="10.0" prefWidth="276.20001220703125" />
         </columnConstraints>
         <rowConstraints>
+         <RowConstraints maxHeight="39.799993896484374" minHeight="10.0" prefHeight="30.19998779296875" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="39.799993896484374" minHeight="10.0" prefHeight="30.19998779296875" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="69.4" minHeight="4.400013732910146" prefHeight="25.000012207031247" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="126.79998626708985" minHeight="2.7999938964843736" prefHeight="25.799987792968743" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="133.20000000000002" minHeight="4.399995422363276" prefHeight="31.999981689453122" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label prefHeight="18.0" prefWidth="62.0" text="Nome" />
-        <Label prefHeight="18.0" prefWidth="60.0" text="Gênero" GridPane.rowIndex="1" />
-        <Label prefHeight="18.0" prefWidth="56.0" text="Editora" GridPane.rowIndex="2" />
-        <Label prefHeight="18.0" prefWidth="62.0" text="Autor" GridPane.rowIndex="3" />
-        <TextField fx:id="txtNome" GridPane.columnIndex="1" />
-        <TextField fx:id="txtGenero" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <TextField fx:id="txtEditora" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField fx:id="txtAutor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label prefHeight="18.0" prefWidth="62.0" text="Nome" GridPane.rowIndex="1" />
+        <Label prefHeight="18.0" prefWidth="60.0" text="Gênero" GridPane.rowIndex="2" />
+        <Label prefHeight="18.0" prefWidth="56.0" text="Editora" GridPane.rowIndex="3" />
+        <Label prefHeight="18.0" prefWidth="62.0" text="Autor" GridPane.rowIndex="4" />
+        <TextField fx:id="txtNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="txtGenero" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="txtEditora" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="txtAutor" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="txtId" GridPane.columnIndex="1" />
+      <Label prefHeight="18.0" prefWidth="62.0" text="Id" />
     </GridPane>
-    <Label layoutX="248.0" layoutY="83.0" prefHeight="18.0" prefWidth="104.0" text="TABELA DE LIVROS" />
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="59.0" prefHeight="18.0" prefWidth="209.0" text="TABELA DE LIVROS" textAlignment="CENTER" />
     <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../../../../../../../../Downloads/Logo_soluções_em_técnico_de_informática_azul_e_verde_água_-removebg-preview.png" />
     </ImageView>
+   <Button fx:id="btSave" layoutX="215.0" layoutY="344.0" mnemonicParsing="false" onAction="#onBtSaveAction" text="Salvar" />
+   <Button fx:id="btCancel" layoutX="300.0" layoutY="344.0" mnemonicParsing="false" onAction="#onBtCancelAction" text="Cancelar" />
 </AnchorPane>
