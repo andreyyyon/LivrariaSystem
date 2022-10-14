@@ -47,7 +47,7 @@ public class ClienteListController implements Initializable, DataChangeListener 
     private TableColumn<Cliente, Integer>tableColumnIdade;
 
     @FXML
-    private TableColumn<Cliente, Integer>tableColumnCPF;
+    private TableColumn<Cliente, String>tableColumnCPF;
 
     @FXML
     private TableColumn<Cliente, Integer>tableColumnEndereco;
@@ -55,12 +55,6 @@ public class ClienteListController implements Initializable, DataChangeListener 
     private TableColumn<Cliente, Cliente> tableColumnEDIT;
     @FXML
     private TableColumn<Cliente, Cliente> tableColumnREMOVE;
-
-    @FXML
-    private Button btNew;
-
-    @FXML
-    private Button btEdit;
 
     @FXML
     private Button btRemove;

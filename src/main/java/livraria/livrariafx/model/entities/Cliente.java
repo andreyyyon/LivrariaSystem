@@ -10,13 +10,13 @@ public class Cliente implements Serializable {
     private String nome;
     private String email;
     private Integer idade;
-    private Integer cpf;
+    private String cpf;
     private String endereco;
 
     public Cliente() {
     }
 
-        public Cliente(Integer id, String nome, String email, Integer idade, Integer cpf , String endereco) {
+        public Cliente(Integer id, String nome, String email, Integer idade, String cpf , String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -61,7 +61,7 @@ public class Cliente implements Serializable {
         return String.valueOf(cpf);
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

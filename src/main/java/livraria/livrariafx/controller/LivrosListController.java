@@ -147,7 +147,8 @@ public class LivrosListController implements Initializable, DataChangeListener {
                 }
                 setGraphic(button);
                 button.setOnAction(
-                        event -> createDialogForm(obj,"/gui/LivrosForm.fxml", Utils.currentStage(event)));
+                        event -> createDialogForm(
+                                obj,"/gui/LivrosForm.fxml", Utils.currentStage(event)));
             }
         });
     }

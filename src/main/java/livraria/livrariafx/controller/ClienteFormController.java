@@ -140,7 +140,7 @@ public class ClienteFormController implements Initializable {
         if (txtCpf.getText() == null){
             exception.addError("cpf", "campo nao pode ser vazio");
         }
-        obj.setCpf(Integer.valueOf(txtCpf.getText()));
+        obj.setCpf(String.valueOf(txtCpf.getText()));
 
         if (txtEndereco.getText() == null){
             exception.addError("endereco", "campo nao pode ser vazio");
