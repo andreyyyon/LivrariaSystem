@@ -113,9 +113,8 @@ public class ClienteDaoJDBC implements ClienteDao {
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()){
-                Livros liv = instantiateLivros(rs);
-                Cliente obj = instantiateCliente(rs, liv);
-                return obj;
+                Cliente cli = instantiateCliente(rs);
+                return cli;
 
             }
             return null;
@@ -127,13 +126,13 @@ public class ClienteDaoJDBC implements ClienteDao {
         }
     }
 
-    private Livros instantiateLivros(ResultSet rs) throws SQLException {
-        Livros liv = new Livros();
-        liv.setNome(rs.getString("livNome"));
-        return liv;
-    }
+//    private Livros instantiateLivros(ResultSet rs) throws SQLException {
+//        Livros liv = new Livros();
+//        liv.setNome(rs.getString("livNome"));
+//        return liv;
+//    }
 
-    private Cliente instantiateCliente(ResultSet rs, Livros liv) throws SQLException{
+    private Cliente instantiateCliente(ResultSet rs) throws SQLException{
         Cliente obj = new Cliente();
         obj.setId(rs.getInt("Id"));
         obj.setNome((rs.getString("Nome")));
@@ -141,37 +140,48 @@ public class ClienteDaoJDBC implements ClienteDao {
         obj.setIdade(rs.getInt("Idade"));
         obj.setCpf(rs.getString("CPF"));
         obj.setEndereco(rs.getString("Endereco"));
-        obj.setLivros(liv);
         return obj;
     }
     @Override
     public List<Cliente> findAll() {
+
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
             st = conn.prepareStatement("" +
-                    "select Cliente.*, Livros.nome as livNome " +
-                    "from Cliente inner join Livros " +
+                    "select * from Cliente " +
                     "order by nome");
 
             rs = st.executeQuery();
 
             List<Cliente> list = new ArrayList<>();
-            Map<Integer, Livros> map = new HashMap<>();
+            Map<Integer, Cliente> map = new HashMap<>();
 
             while (rs.next()){
 
-                Livros liv = map.get(rs.getInt("Id"));
+                Cliente cli = map.get(rs.getInt("Id"));
 
-                if (liv == null){
-                    liv = instantiateLivros(rs);
-                    map.put(rs.getInt("Id"), liv);
+                if (cli == null){
+                    cli = instantiateCliente(rs);
+                    map.put(rs.getInt("Id"), cli);
                 }
 
-                Cliente obj = instantiateCliente(rs, liv);
-                list.add(obj);
+                list.add(cli);
+
             }
             return list;
+
+//                Livros liv = map.get(rs.getInt("Id"));
+//
+//                if (liv == null){
+//                    liv = instantiateLivros(rs);
+//                    map.put(rs.getInt("Id"), liv);
+//                }
+//
+//                Cliente obj = instantiateCliente(rs, liv);
+//                list.add(obj);
+//            }
+//            return list;
         } catch (SQLException e){
             throw new DbException(e.getMessage());
         } finally {
@@ -180,43 +190,43 @@ public class ClienteDaoJDBC implements ClienteDao {
         }
     }
 
-    @Override
-    public List<Cliente> findByLivros(Livros livros) {
-        PreparedStatement st = null;
-        ResultSet rs = null;
-        try{
-            st = conn.prepareStatement("" +
-                    "select Cliente.*, Livros.nome as LivNome " +
-                    "from Cliente inner join Livros " +
-                    "on Cliente.Id = Livros.Id " +
-                    "where Id = ? " +
-                    "order by nome");
-
-//            st.setInt(1, department.getId());
-
-            rs = st.executeQuery();
-
-            List<Cliente> list = new ArrayList<>();
-            Map<Integer, Livros> map = new HashMap<>();
-
-            while (rs.next()){
-
-                Livros liv = map.get(rs.getInt("Id"));
-
-                if (liv == null){
-                    liv = instantiateLivros(rs);
-                    map.put(rs.getInt("Id"), liv);
-                }
-
-                Cliente obj = instantiateCliente(rs, liv);
-                list.add(obj);
-            }
-            return list;
-        } catch (SQLException e){
-            throw new DbException(e.getMessage());
-        } finally {
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
-        }
-    }
+//    @Override
+//    public List<Cliente> findByLivros(Livros livros) {
+//        PreparedStatement st = null;
+//        ResultSet rs = null;
+//        try{
+//            st = conn.prepareStatement("" +
+//                    "select Cliente.*, Livros.nome as LivNome " +
+//                    "from Cliente inner join Livros " +
+//                    "on Cliente.Id = Livros.Id " +
+//                    "where Id = ? " +
+//                    "order by nome");
+//
+////            st.setInt(1, department.getId());
+//
+//            rs = st.executeQuery();
+//
+//            List<Cliente> list = new ArrayList<>();
+//            Map<Integer, Livros> map = new HashMap<>();
+//
+//            while (rs.next()){
+//
+//                Livros liv = map.get(rs.getInt("Id"));
+//
+//                if (liv == null){
+//                    liv = instantiateLivros(rs);
+//                    map.put(rs.getInt("Id"), liv);
+//                }
+//
+//                Cliente obj = instantiateCliente(rs, liv);
+//                list.add(obj);
+//            }
+//            return list;
+//        } catch (SQLException e){
+//            throw new DbException(e.getMessage());
+//        } finally {
+//            DB.closeStatement(st);
+//            DB.closeResultSet(rs);
+//        }
+//    }
 }
