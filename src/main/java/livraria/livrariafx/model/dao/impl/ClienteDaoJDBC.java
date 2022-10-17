@@ -83,7 +83,7 @@ public class ClienteDaoJDBC implements ClienteDao {
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try{
-            st = conn.prepareStatement("delete from Cliente where Id = ?");
+            st = conn.prepareStatement("delete from Cliente where id = ?");
 
             st.setInt(1, id);
 
@@ -108,7 +108,7 @@ public class ClienteDaoJDBC implements ClienteDao {
             st = conn.prepareStatement("" +
                     "select Cliente.*, Livros.nome as livnome " +
                     "from Cliente inner join Livros " +
-                    "where Cliente.Id = ?");
+                    "where Cliente.id = ?");
 
             st.setInt(1, id);
             rs = st.executeQuery();
@@ -139,6 +139,8 @@ public class ClienteDaoJDBC implements ClienteDao {
         obj.setNome((rs.getString("Nome")));
         obj.setEmail(rs.getString("Email"));
         obj.setIdade(rs.getInt("Idade"));
+        obj.setCpf(rs.getString("CPF"));
+        obj.setEndereco(rs.getString("Endereco"));
         obj.setLivros(liv);
         return obj;
     }

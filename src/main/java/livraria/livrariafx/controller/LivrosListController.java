@@ -42,7 +42,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     private TableColumn<Livros, String> tableColumnNome;
 
     @FXML
-    private TableColumn<Livros, String> tableColumnGênero;
+    private TableColumn<Livros, String> tableColumnGenero;
 
     @FXML
     private TableColumn<Livros, String> tableColumnEditora;
@@ -84,7 +84,7 @@ public class LivrosListController implements Initializable, DataChangeListener {
     private void initializeNodes() {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tableColumnGênero.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        tableColumnGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         tableColumnEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         tableColumnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
 
@@ -187,8 +187,8 @@ public class LivrosListController implements Initializable, DataChangeListener {
         }
     }
 
-    public void setTableColumnGênero(TableColumn<Livros, String> tableColumnGênero) {
-        this.tableColumnGênero = tableColumnGênero;
+    public void setTableColumnGenero(TableColumn<Livros, String> tableColumnGenero) {
+        this.tableColumnGenero = tableColumnGenero;
     }
 
     public void setTableColumnEditora(TableColumn<Livros, String> tableColumnEditora) {
