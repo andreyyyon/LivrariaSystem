@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
@@ -24,7 +25,11 @@
                   <Insets bottom="10.0" left="20.0" top="10.0" />
                </padding>
             </Label>
-      <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" styleClass="button-new" text="Novo" />
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+            <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" styleClass="button-new" text="Novo" />
+        </items>
+      </ToolBar>
       <TableView fx:id="tableViewcliente" prefHeight="290.0" prefWidth="900.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="48.0" text="Id" />

@@ -29,8 +29,8 @@ public class ClienteFormController implements Initializable {
 
     private final List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
-    @FXML
-    private TextField txtId;
+//    @FXML
+//    private TextField txtId;
 
     @FXML
     private TextField txtNome;
@@ -47,8 +47,8 @@ public class ClienteFormController implements Initializable {
     @FXML
     public TextField txtEndereco;
 
-    @FXML
-    private ComboBox<Livros> comboBoxLivros;
+//    @FXML
+//    private ComboBox<Livros> comboBoxLivros;
     @FXML
     private Label labelErrorNome;
     @FXML
@@ -70,8 +70,8 @@ public class ClienteFormController implements Initializable {
 
     private ObservableList<Livros> obsList;
 
-    public ClienteFormController() {
-    }
+//    public ClienteFormController() {
+//    }
 
     //Contolador agora tem uma instancia do departamento
     public void setCliente(Cliente entity){
@@ -120,7 +120,7 @@ public class ClienteFormController implements Initializable {
 
         ValidationException exception = new ValidationException("Erro na validacao");
 
-        obj.setId(Utils.tryParseToInt(txtId.getText()));
+//        obj.setId(Utils.tryParseToInt(txtId.getText()));
 
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("name", "campo nao pode ser vazio");
@@ -166,7 +166,7 @@ public class ClienteFormController implements Initializable {
     }
 
     private void initializeNodes() {
-        Constraints.setTextFieldInteger(txtId);
+//        Constraints.setTextFieldInteger(txtId);
         Constraints.setTextFieldMaxLength(txtNome, 70);
         Constraints.setTextFieldMaxLength(txtEmail, 60);
         Constraints.setTextFieldMaxLength(txtIdade, 3);
@@ -174,7 +174,7 @@ public class ClienteFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtEndereco, 70);
 
 
-        initializeComboBoxLivros();
+//        initializeComboBoxLivros();
 
     }
 
@@ -184,7 +184,7 @@ public class ClienteFormController implements Initializable {
             throw new IllegalStateException("Entidade nula");
         }
 
-        txtId.setText(String.valueOf(entity.getId()));
+//        txtId.setText(String.valueOf(entity.getId()));
         txtNome.setText(entity.getNome());
         txtEmail.setText(entity.getEmail());
         txtIdade.setText(String.valueOf(entity.getIdade()));
@@ -196,16 +196,16 @@ public class ClienteFormController implements Initializable {
 
     }
 
-    public void loadAssociatedObjects(){
-
-        if (LivrosService == null){
-            throw new IllegalStateException("LivrosService was null");
-        }
-
-        List<Livros> list = LivrosService.findAll();
-        obsList = FXCollections.observableArrayList(list);
-        comboBoxLivros.setItems(obsList);
-    }
+//    public void loadAssociatedObjects(){
+//
+//        if (LivrosService == null){
+//            throw new IllegalStateException("LivrosService was null");
+//        }
+//
+//        List<Livros> list = LivrosService.findAll();
+//        obsList = FXCollections.observableArrayList(list);
+//        comboBoxLivros.setItems(obsList);
+//    }
 
     private void setErrorMessages(Map<String, String> errors){
         Set<String> fields = errors.keySet();
@@ -219,18 +219,18 @@ public class ClienteFormController implements Initializable {
 
     }
 
-    private void initializeComboBoxLivros() {
-        Callback<ListView<Livros>, ListCell<Livros>> factory = lv -> new ListCell<Livros>() {
-            @Override
-            protected void updateItem(Livros item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty ? "" : item.getNome());
-            }
-        };
-        ComboBox<Livros> comboBoxLivros = null;
-        assert comboBoxLivros != null;
-        comboBoxLivros.setCellFactory(factory);
-        comboBoxLivros.setButtonCell(factory.call(null));
-    }
+//    private void initializeComboBoxLivros() {
+//        Callback<ListView<Livros>, ListCell<Livros>> factory = lv -> new ListCell<Livros>() {
+//            @Override
+//            protected void updateItem(Livros item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setText(empty ? "" : item.getNome());
+//            }
+//        };
+//        ComboBox<Livros> comboBoxLivros = null;
+//        assert comboBoxLivros != null;
+//        comboBoxLivros.setCellFactory(factory);
+//        comboBoxLivros.setButtonCell(factory.call(null));
+//    }
 
 }

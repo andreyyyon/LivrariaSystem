@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox minHeight="500.0" minWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.AboutController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livraria.livrariafx.controller.AboutController">
     <Label prefHeight="36.0" prefWidth="90.0" styleClass="label-sobre" text="Sobre" textAlignment="CENTER">
         <font>
             <Font name="System Bold" size="24.0" />
@@ -21,7 +21,7 @@
     </Label>
     <Text fill="#09b86e" strokeType="OUTSIDE" strokeWidth="0.0" text="♦ Projeto Livraria Codev ♦" textAlignment="CENTER" wrappingWidth="601.68701171875">
         <VBox.margin>
-          <Insets left="150.0" top="50.0" />
+          <Insets left="125.0" top="50.0" />
         </VBox.margin>
         <font>
           <Font name="Bell MT" size="37.0" />
@@ -29,7 +29,7 @@
     </Text>
     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aplicação desenvolvida pelos alunos: Andrey Rebelatto, Guilherme Cauvilla, Ronald Mello e Samuel Cavarzzan, com o intuito de auxiliar na escolha de um livro ou categoria sobre a indecisão do cliente" textAlignment="CENTER" wrappingWidth="618.68701171875">
         <VBox.margin>
-          <Insets bottom="10.0" left="150.0" top="50.0" />
+          <Insets bottom="10.0" left="125.0" top="50.0" />
         </VBox.margin>
         <font>
           <Font name="Bell MT" size="25.0" />

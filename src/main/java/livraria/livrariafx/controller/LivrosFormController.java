@@ -27,8 +27,8 @@ public class LivrosFormController implements Initializable {
 
     private final List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
-    @FXML
-    private TextField txtId;
+//    @FXML
+//    private TextField txtId;
 
     @FXML
     private TextField txtNome;
@@ -102,7 +102,7 @@ public class LivrosFormController implements Initializable {
 
         ValidationException exception = new ValidationException("Erro na validacao");
 
-        obj.setId(Utils.tryParseToInt(txtId.getText()));
+//        obj.setId(Utils.tryParseToInt(txtId.getText()));
 
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")){
             exception.addError("nome", "campo nao pode ser vazio");
@@ -144,7 +144,7 @@ public class LivrosFormController implements Initializable {
     }
 
     private void initializeNodes() {
-        Constraints.setTextFieldInteger(txtId);
+//        Constraints.setTextFieldInteger(txtId);
         Constraints.setTextFieldMaxLength(txtNome, 30);
         Constraints.setTextFieldMaxLength(txtGenero, 30);
         Constraints.setTextFieldMaxLength(txtEditora, 30);
@@ -158,7 +158,7 @@ public class LivrosFormController implements Initializable {
             throw new IllegalStateException("Entidade nula");
         }
 
-        txtId.setText(String.valueOf(entity.getId()));
+//        txtId.setText(String.valueOf(entity.getId()));
         txtNome.setText(entity.getNome());
         txtGenero.setText(entity.getGenero());
         txtEditora.setText(entity.getEditora());

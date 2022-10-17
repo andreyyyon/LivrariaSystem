@@ -57,7 +57,7 @@ public class ClienteListController implements Initializable, DataChangeListener 
     private TableColumn<Cliente, Cliente> tableColumnREMOVE;
 
     @FXML
-    private Button btRemove;
+    private Button btNew;
 
     @FXML
     public void onBtNewAction(ActionEvent event){
@@ -106,13 +106,13 @@ public class ClienteListController implements Initializable, DataChangeListener 
 
     private void createDialogForm(Cliente obj, String absoluteNome, Stage parentStage){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteNome));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ClienteForm.fxml"));
             Pane pane = loader.load();
 
             ClienteFormController controller = loader.getController();
             controller.setCliente(obj);
             controller.setServices(new ClienteService(), new LivrosService());
-            controller.loadAssociatedObjects();
+//            controller.loadAssociatedObjects();
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
